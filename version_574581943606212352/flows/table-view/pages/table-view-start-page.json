@@ -1,0 +1,157 @@
+{
+  "pageModelVersion": "18.4.1",
+  "title": "",
+  "description": "",
+  "variables": {
+    "getMembersListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "orgsOracleUsers/getMembers",
+        "idAttribute": "id",
+        "itemsPath": "",
+        "responseType": "page:getMembersResponse"
+      }
+    },
+    "organizationListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "businessObjects/getall_Organization",
+        "idAttribute": "id",
+        "itemsPath": "items",
+        "responseType": "page:getallOrganizationResponse"
+      }
+    },
+    "getCategoriesListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "categories/getCategories",
+        "idAttribute": "id",
+        "itemsPath": "items",
+        "responseType": "page:getCategoriesResponse"
+      }
+    },
+    "getCategoriesListSDP2": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "categories/getCategories",
+        "idAttribute": "id",
+        "itemsPath": "items",
+        "responseType": "page:getCategoriesResponse2"
+      }
+    },
+    "getCategoriesListSDP3": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "categories/getCategories",
+        "idAttribute": "id",
+        "itemsPath": "items",
+        "responseType": "page:getCategoriesResponse3"
+      }
+    }
+  },
+  "types": {
+    "getMembersResponse": [
+      {
+        "login": "string",
+        "id": "number",
+        "node_id": "string",
+        "avatar_url": "string",
+        "gravatar_id": "string",
+        "url": "string",
+        "html_url": "string",
+        "followers_url": "string",
+        "following_url": "string",
+        "gists_url": "string",
+        "starred_url": "string",
+        "subscriptions_url": "string",
+        "organizations_url": "string",
+        "repos_url": "string",
+        "events_url": "string",
+        "received_events_url": "string",
+        "type": "string",
+        "site_admin": "boolean"
+      }
+    ],
+    "@decorators.getMembersResponse": {
+      "endpoint": "getMembers",
+      "service": "orgsOracleUsers",
+      "path": "response"
+    },
+    "getallOrganizationResponse": {
+      "items": [
+        {
+          "links": "object[]",
+          "id": "number",
+          "creationDate": "string",
+          "lastUpdateDate": "string",
+          "createdBy": "string",
+          "lastUpdatedBy": "string",
+          "org": "string",
+          "avatarUrl": "string"
+        }
+      ]
+    },
+    "@decorators.getallOrganizationResponse": {
+      "endpoint": "getall_Organization",
+      "service": "businessObjects",
+      "path": "response"
+    },
+    "getCategoriesResponse": {
+      "items": [
+        {
+          "cross_reference": "string",
+          "id": "number"
+        }
+      ]
+    },
+    "@decorators.getCategoriesResponse": {
+      "endpoint": "getCategories",
+      "service": "categories",
+      "path": "response"
+    },
+    "getCategoriesResponse2": {
+      "items": [
+        {
+          "cross_reference": "string",
+          "id": "number"
+        }
+      ]
+    },
+    "@decorators.getCategoriesResponse2": {
+      "endpoint": "getCategories",
+      "service": "categories",
+      "path": "response"
+    },
+    "getCategoriesResponse3": {
+      "items": [
+        {
+          "cross_reference": "string",
+          "id": "number"
+        }
+      ]
+    },
+    "@decorators.getCategoriesResponse3": {
+      "endpoint": "getCategories",
+      "service": "categories",
+      "path": "response"
+    }
+  },
+  "chains": {},
+  "eventListeners": {},
+  "imports": {
+    "components": {
+      "oj-table": {
+        "path": "ojs/ojtable"
+      },
+      "oj-list-view": {
+        "path": "ojs/ojlistview"
+      },
+      "oj-vb-list-item": {
+        "path": "vb/components/list-item/loader"
+      },
+      "oj-avatar": {
+        "path": "ojs/ojavatar"
+      }
+    }
+  }
+}

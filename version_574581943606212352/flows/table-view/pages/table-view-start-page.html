@@ -1,0 +1,59 @@
+<div class="oj-flex oj-sm-flex-direction-column">
+    <div class="oj-flex oj-flex-item">
+        <h1 id="h1-1021909705-1" class="oj-flex-item">Heading</h1>
+    </div>
+    <div class="oj-flex oj-flex-item">
+      <oj-popup id="popup1" style="display:none;min-width:75px;min-height:75px;"
+                    tail="simple" modality="modeless">
+            <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center">
+                <div class="oj-flex-item">Chasing Tail</div>
+            </div>
+          </oj-popup>
+        <div class="oj-flex-item oj-flex oj-sm-flex-initial oj-sm-align-self-center">
+            <oj-list-view id="oj-list-view-1021909705-1" style="height:95vh;min-height:300px;overflow-x:hidden" class="oj-flex-item" data="[[$page.variables.getCategoriesListSDP3]]">
+                <template slot="itemTemplate">
+                    <div class="oj-flex" style="flex-wrap: nowrap;align:left">
+                        <div class="oj-flex-item oj-flex">
+                            <div class="oj-flex oj-flex-item oj-sm-flex-items-1 oj-sm-flex-wrap-nowrap oj-sm-flex-initial">
+                            <div class="oj-flex-item" style="padding-right:5px;">
+                            <oj-avatar class="oj-flex-item oj-sm-flex-initial" :id="[['oj-avatar-1021909705-1-' + $current.index]]" src="https://www.oracle.com/webfolder/technetwork/jet/demo/images/composites/avatar-image.jpg" initials="AS"></oj-avatar>
+                            </div>
+<!--                                 <span class=" oj-flex-item oj-sm-flex-1" 
+                                style="background-image: url('https://www.oracle.com/webfolder/technetwork/jet/demo/images/listView/oracle.gif'); width:50px;   background-repeat:no-repeat;
+"></span> -->
+                            </div>
+                            <div class="oj-flex-item oj-flex oj-sm-align-items-baseline">
+                                <div class="demo-content oj-flex-item">
+                                    <div>
+                                        <strong>
+                                            <oj-bind-text value="[[$current.data.cross_reference]]"></oj-bind-text>
+                                        </strong>
+                                        <span class="demo-username">
+                                            <oj-bind-text value="@MonkeyNutz"></oj-bind-text>
+                                        </span>
+                                    </div>
+                                    <div class="demo-tweet">
+                                        <span style="word-wrap: break-word">
+                                            <oj-bind-text>This review is for the RIGHT hand Callaway Men't Strata Set - I'm sure there is no difference for lefties.
+
+I'm an experienced golfer that plays with fairly high-end equipment that seems to get partially upgraded every season or two whether I plan to, or not. It's not uncommon for me to spend $1,000-$1,400 annually on upgrading equipment.</oj-bind-text>
+                                        </span>
+                                        <a :href="[[$current.data.source]]">
+                                            <oj-bind-text value="[[$current.data.source]]"></oj-bind-text>
+                                        </a>
+                                    </div>        
+                        
+                            
+                                    <span class="demo-metadata">
+                                        <oj-bind-text value="[[$current.data.cross_reference]]"></oj-bind-text>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="oj-flex oj-sm-flex-direction-column oj-flex-item" data-vb-layout-type="flex"></div>
+                        </div>
+                    </div>
+                </template>
+            </oj-list-view>
+        </div>
+    </div>
+</div>

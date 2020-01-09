@@ -1,0 +1,310 @@
+{
+ "pageModelVersion": "18.4.1",
+ "description": "",
+ "routerFlow": "main",
+ "variables": {
+		"messagesADP": {
+			"type": "vb/ArrayDataProvider",
+			"defaultValue": {
+				"idAttribute": "id",
+				"itemType": "page:messageType"
+			}
+		},
+		"messageId": {
+			"type": "number",
+			"defaultValue": 0
+		},
+		"page": {
+			"type": "string",
+			"required": true,
+			"input": "fromCaller"
+		},
+		"shoppingCartArrayDPGlobal": {
+			"type": "vb/ArrayDataProvider",
+			"defaultValue": {}
+		}
+	},
+ "types": {
+		"messageType": {
+			"id": "string",
+			"severity": "string",
+			"detail": "string",
+			"autoTimeout": "number"
+		}
+	},
+ "chains": {
+  "showNotification": {
+			"variables": {
+				"eventPayload": {
+					"type": "page:messageType",
+					"input": "fromCaller"
+				}
+			},
+			"root": "displayMessage",
+			"actions": {
+				"displayMessage": {
+					"module": "vb/action/builtin/fireDataProviderEventAction",
+					"parameters": {
+						"target": "{{ $page.variables.messagesADP }}",
+						"add": {
+							"data": "{{ [ $chain.variables.eventPayload ] }}"
+						}
+					},
+					"outcomes": {
+						"success": "updateMessageId"
+					}
+				},
+				"updateMessageId": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.messageId": {
+							"source": "{{ $page.variables.messageId + 1 }}"
+						}
+					}
+				}
+			}
+		},
+  "closeNotificationHandler": {
+			"variables": {
+				"eventMessage": {
+					"type": "page:messageType",
+					"input": "fromCaller"
+				}
+			},
+			"root": "removeMessage",
+			"actions": {
+				"removeMessage": {
+					"module": "vb/action/builtin/fireDataProviderEventAction",
+					"parameters": {
+						"target": "{{ $page.variables.messagesADP }}",
+						"remove": {
+							"keys": "{{ [ $variables.eventMessage.id ] }}"
+						}
+					}
+				}
+			}
+		},
+  "HyperlinkClick": {
+			"description": "",
+			"variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "navigateToPage1",
+			"actions": {
+				"navigateToPage1": {
+					"module": "vb/action/builtin/navigateToPageAction",
+					"parameters": {
+						"page": "shell/main"
+					}
+				}
+			}
+		},
+  "HyperlinkClick1": {
+   "description": "",
+   "variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+   "root": "navigateToPage1",
+   "actions": {
+    "navigateToPage1": {
+     "module": "vb/action/builtin/navigateToPageAction",
+     "parameters": {
+      "page": "shell/order-list"
+     }
+    }
+   }
+  },
+  "HyperlinkClick2": {
+			"description": "",
+			"variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "navigateToPage1",
+			"actions": {
+				"navigateToPage1": {
+					"module": "vb/action/builtin/navigateToPageAction",
+					"parameters": {
+						"page": "shell/reports"
+					}
+				}
+			}
+		},
+  "HyperlinkClick3": {
+			"description": "",
+			"variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "navigateToPage1",
+			"actions": {
+				"navigateToPage1": {
+					"module": "vb/action/builtin/navigateToPageAction",
+					"parameters": {
+						"page": "shell/table-view"
+					}
+				}
+			}
+		},
+  "SpanClickChain": {
+			"description": "",
+			"variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "callModuleFunction1",
+			"actions": {
+				"callModuleFunction1": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "popUp"
+					}
+				}
+			}
+		},
+  "shoppingCartClicked_new": {
+   "description": "",
+   "variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+   "root": "openPopupShoppingCart",
+   "actions": {
+    "openPopupShoppingCart": {
+     "module": "vb/action/builtin/callModuleFunctionAction",
+     "parameters": {
+      "module": "{{$page.functions}}",
+      "functionName": "popUp",
+                        "params": [
+                            "{{ $application.variables.scGlobalADP }}"
+                        ]
+     }
+    }
+   }
+  }
+ },
+ "eventListeners": {
+  "vbNotification": {
+			"chains": [
+				{
+					"chainId": "showNotification",
+					"parameters": {
+						"eventPayload": "{{ { id: $page.variables.messageId, detail: $event.message, severity: $event.type, autoTimeout: $event.displayMode === 'transient' ? 0 : -1 } }}"
+					}
+				}
+			]
+		},
+  "onMessageClose": {
+			"chains": [
+				{
+					"chainId": "closeNotificationHandler",
+					"parameters": {
+						"eventMessage": "{{ $event.detail.message }}"
+					}
+				}
+			]
+		},
+  "A385906471Click": {
+			"chains": [
+				{
+					"chainId": "HyperlinkClick",
+					"parameters": {
+						"detail": "{{ $event.detail }}"
+					}
+				}
+			]
+		},
+  "A385906472Click": {
+			"chains": [
+				{
+					"chainId": "HyperlinkClick1",
+					"parameters": {
+						"detail": "{{ $event.detail }}"
+					}
+				}
+			]
+		},
+  "A385906473Click": {
+			"chains": [
+				{
+					"chainId": "HyperlinkClick2",
+					"parameters": {
+						"detail": "{{ $event.detail }}"
+					}
+				}
+			]
+		},
+  "A385906474Click": {
+			"chains": [
+				{
+					"chainId": "HyperlinkClick3",
+					"parameters": {
+						"detail": "{{ $event.detail }}"
+					}
+				}
+			]
+		},
+  "SPAN385906471Click": {
+			"chains": [
+				{
+					"chainId": "shoppingCartClicked_new",
+					"parameters": {
+						"detail": "{{ $event.detail }}"
+					}
+				}
+			]
+		}
+ },
+ "imports": {
+		"components": {
+			"oj-messages": {
+				"path": "ojs/ojmessages"
+			},
+			"oj-menu": {
+				"path": "ojs/ojmenu"
+			},
+			"oj-menu-button": {
+				"path": "ojs/ojbutton"
+			},
+			"oj-option": {
+				"path": "ojs/ojoption"
+			},
+			"oj-toolbar": {
+				"path": "ojs/ojtoolbar"
+			},
+			"oj-navigation-list": {
+				"path": "ojs/ojnavigationlist"
+			},
+			"oj-list-view": {
+				"path": "ojs/ojlistview"
+			},
+			"oj-input-text": {
+				"path": "ojs/ojinputtext"
+			},
+			"oj-masonry-layout": {
+				"path": "ojs/ojmasonrylayout"
+			}
+		}
+	}
+}

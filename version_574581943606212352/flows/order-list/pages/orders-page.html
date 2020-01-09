@@ -1,0 +1,58 @@
+<div class="oj-flex oj-sm-flex-direction-column">
+    <div class="oj-flex oj-flex-item oj-sm-flex-direction-column">
+        <div class="oj-flex oj-flex-item oj-sm-flex-direction-column">
+            <div class="oj-flex-item oj-flex oj-sm-flex-direction-column">
+                <h1 id="h1-649402537-1" class="oj-flex-item">Order History</h1>
+                <oj-table summary="Sample Table" scroll-policy="loadMoreOnScroll" id="oj-table-649402537-1" data="{{ $variables.getOrdersListSDP }}" columns='[{"headerText":"Order Number","field":"ordernumber","template":"Order Number"},{"headerText":"First Name","field":"contactfirstname"},{"headerText":"Customer Name","field":"customername"},{"headerText":"Order Date","field":"orderdate"},{"headerText":"Status","field":"status"}]' selection-mode.row="single" class="oj-flex-item" horizontal-grid-visible="enabled">
+                    <template slot="Order Number">
+                        <a target="_blank" :id="[['a-649402537-1-' + $current.index]]" on-click="[[$listeners.a6494025371Click]]">
+                            <oj-bind-text value="[[$current.data]]"></oj-bind-text>
+                        </a>
+                    </template>
+                </oj-table>
+                <div class="oj-flex oj-flex-item oj-sm-align-items-flex-end oj-sm-justify-content-space-around">
+                    <div class="oj-flex-item">
+                        <oj-button id="oj-button-649402537-2" on-click="[[$listeners.ojButton6494025372Click]]" class="demo-button-blue">Previous</oj-button>
+                    </div>
+                    <div class="oj-flex-item">
+                        <oj-button id="oj-button-649402537-1" on-click="[[$listeners.ojButton6494025371Click]]" class="demo-button-blue">Next</oj-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="oj-flex">
+
+<div id="dialogWrapper">
+          <oj-dialog style="display:none;width: 75vw; height: 75vh;color:white" 
+          id="modalDialog1" dialog-title="Order Details">
+
+    <oj-table summary="Sample Table" scroll-policy="loadMoreOnScroll" id="oj-table-649402537-2" class="oj-flex-item oj-sm-12 oj-md-12" columns='[{"headerText":"Line","field":"orderlinenumber","template": "cellTemplate"},
+    {"headerText":"Customer Name","field":"customername"},
+    {"headerText":"Order Number","field":"ordernumber"},
+    {"headerText":"Address","field":"addressline1"},
+    {"headerText":"phone","field":"phone","template": "cellTemplate"},
+    {"headerText":"Price","field":"priceeach"},
+    {"headerText":"productcode","field":"productcode"},
+    {"headerText":"First","field":"contactfirstname"},
+    {"headerText":"Last","field":"contactlastname"},
+    {"headerText":"city","field":"city"},{"headerText":"Country","field":"country"},
+    {"headerText":"Zip","field":"postalcode"}]' data="{{ $variables.getOrderOrdernumberListSDP }}">
+     <template slot="ratingCellTemplate" data-oj-as="cell">
+             <oj-rating-gauge value="{{cell.data}}" readonly="" style="width:60px;height:15px;">
+             </oj-rating-gauge>
+          </template>
+    </oj-table>
+
+            <div slot="footer">
+              <oj-button id="okButton" data-bind="click:function (event) {
+          document.getElementById('modalDialog1').close();
+        }" class="demo-button-blue">OK
+              </oj-button>
+            </div>
+          </oj-dialog>
+         
+    </div>
+</div>
+

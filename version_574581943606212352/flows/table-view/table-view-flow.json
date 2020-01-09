@@ -1,0 +1,10 @@
+{
+    "flowModelVersion": "18.4.1",
+    "id": "table-view",
+    "description": "Flow main",
+    "defaultPage": "table-view-start",
+    "chains": {},
+    "services": {},
+    "types": {},
+    "variables": {}
+}

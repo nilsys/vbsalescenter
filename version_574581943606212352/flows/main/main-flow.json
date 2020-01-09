@@ -1,0 +1,40 @@
+{
+    "flowModelVersion": "18.4.1",
+    "id": "main",
+    "description": "Flow main",
+    "defaultPage": "main-start",
+    "chains": {},
+    "services": {},
+    "types": {},
+    "variables": {
+        "steps": {
+            "type": "object[]",
+            "defaultValue": [
+                {
+                    "label": "Choose Products",
+                    "id": "1"
+                },
+                {
+                    "label": "Ship Address",
+                    "id": "2"
+                },
+                {
+                    "label": "Bill Address",
+                    "id": "3"
+                },
+                {
+                    "label": "Order Summary",
+                    "id": "4"
+                },
+                {
+                    "label": "Order Confirmation",
+                    "id": "5"
+                }
+            ]
+        },
+        "selectedStepValue": {
+            "type": "string",
+            "defaultValue": "1"
+        }
+      }
+}

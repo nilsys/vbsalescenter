@@ -1,0 +1,380 @@
+{
+ "pageModelVersion": "18.4.1",
+ "title": "",
+ "description": "",
+ "variables": {
+  "getOrderdataListSDP": {
+			"type": "vb/ServiceDataProvider",
+			"defaultValue": {
+				"endpoint": "yearlySalesByProduct/getYearlysalesbyproduct",
+				"responseType": "getYearlysalesbyproduct"
+			}
+		},
+  "yearSalesByProductSDP": {
+			"type": "vb/ServiceDataProvider",
+			"defaultValue": {
+				"endpoint": "yearlySalesByProduct/getYearlysalesbyproduct",
+				"responseType": "getYearlysalesbyproduct",
+				"itemsPath": "items"
+			}
+		},
+  "getYearlysalesbyproductListSDP": {
+			"type": "vb/ServiceDataProvider",
+			"defaultValue": {
+				"endpoint": "yearlySalesByProduct/getYearlysalesbyproduct",
+				"idAttribute": "name",
+				"itemsPath": "",
+				"responseType": "page:getYearlysalesbyproductResponse"
+			}
+		},
+  "getYearlysalesbyproductListSDP2": {
+			"type": "vb/ServiceDataProvider",
+			"defaultValue": {
+				"endpoint": "yearlySalesByProduct/getYearlysalesbyproduct",
+				"idAttribute": "y",
+				"itemsPath": "items",
+				"responseType": "page:getYearlysalesbyproductResponse2"
+			}
+		},
+  "getYrsalesListSDP": {
+			"type": "vb/ServiceDataProvider",
+			"defaultValue": {
+				"endpoint": "yearlySalesByProduct/getYrsales",
+				"idAttribute": "total",
+				"itemsPath": "items",
+				"responseType": "page:getYrsalesResponse"
+			}
+		},
+        "orientation": {
+            "type": "string",
+            "defaultValue": "vertical"
+        },
+        "RatingSDP": {
+            "type": "vb/ServiceDataProvider",
+            "defaultValue": {
+                "endpoint": "ratings/getRating",
+                "responseType": "getRating",
+                "itemsPath": "items"
+            }
+        },
+        "getYrproductsListSDP": {
+            "type": "vb/ServiceDataProvider",
+            "defaultValue": {
+                "endpoint": "yearlyProductsData/getYrproducts",
+                "idAttribute": "total",
+                "itemsPath": "items",
+                "responseType": "page:getYrproductsResponse"
+            }
+        },
+        "customertoproductARR": {
+            "type": "any",
+            "defaultValue": "[]",
+            "persisted": "local"
+        },
+        "cp": {
+            "type": "getCustomertoproduct"
+        },
+        "handler": {
+            "type": "any"
+        },
+        "producttocustomerARR": {
+            "type": "vb/ServiceDataProvider",
+            "defaultValue": {
+                "endpoint": "producttocustomer/getProducttocustomer",
+                "responseType": "getProducttocustomer",
+                "itemsPath": "products"
+            }
+        }
+ },
+ "types": {
+  "getOrderdataResponse": {
+			"items": [
+				{
+					"label": "string",
+					"total_sales": "number"
+				}
+			]
+		},
+  "@decorators.getOrderdataResponse": {
+			"endpoint": "getOrderdata",
+			"service": "plsApexVenksOrderinfo",
+			"path": "response"
+		},
+  "@decorators.getYearlysalesbyproduct": {
+			"endpoint": "getYearlysalesbyproduct",
+			"service": "yearlySalesByProduct",
+			"path": "response"
+		},
+  "getYearlysalesbyproduct": [
+   {
+				"name": "string",
+				"y": "number",
+				"label": "number"
+			}
+  ],
+  "getYearlysalesbyproductResponse": [
+   {
+				"name": "string",
+				"items": "object[]"
+			}
+  ],
+  "@decorators.getYearlysalesbyproductResponse": {
+			"endpoint": "getYearlysalesbyproduct",
+			"service": "yearlySalesByProduct",
+			"path": "response"
+		},
+  "getYearlysalesbyproductResponse2": [
+   {
+				"name": "string",
+				"items": [
+					{
+						"y": "number"
+					}
+				]
+			}
+  ],
+  "@decorators.getYearlysalesbyproductResponse2": {
+			"endpoint": "getYearlysalesbyproduct",
+			"service": "yearlySalesByProduct",
+			"path": "response"
+		},
+  "getYrsalesResponse": {
+			"items": [
+				{
+					"total": "number",
+					"customername": "string",
+					"yr_date": "number"
+				}
+			]
+		},
+  "@decorators.getYrsalesResponse": {
+			"endpoint": "getYrsales",
+			"service": "yearlySalesByProduct",
+			"path": "response"
+		},
+        "@decorators.getRating": {
+            "endpoint": "getRating",
+            "service": "ratings",
+            "path": "response"
+        },
+        "getRating": {
+            "items": [
+                {
+                    "one": "number",
+                    "two": "number",
+                    "three": "number",
+                    "four": "number",
+                    "five": "number"
+                }
+            ]
+        },
+        "getYrproductsResponse": {
+            "items": [
+                {
+                    "total": "number",
+                    "productline": "string",
+                    "yr_date": "number"
+                }
+            ]
+        },
+        "@decorators.getYrproductsResponse": {
+            "endpoint": "getYrproducts",
+            "service": "yearlyProductsData",
+            "path": "response"
+        },
+        "@decorators.getCustomertoproduct": {
+            "endpoint": "getCustomertoproduct",
+            "service": "customertoproduct",
+            "path": "response"
+        },
+        "getCustomertoproduct": [
+            {
+                "label": "string",
+                "value": "number",
+                "id": "number",
+                "products": [
+                    {
+                        "label": "string",
+                        "value": "number",
+                        "id": "number"
+                    }
+                ]
+            }
+        ],
+        "@decorators.getProducttocustomer": {
+            "endpoint": "getProducttocustomer",
+            "service": "producttocustomer",
+            "path": "response"
+        },
+        "getProducttocustomer": [
+            {
+                "label": "string",
+                "value": "number",
+                "id": "number",
+                "svgcolor": "string",
+                "products": [
+                    {
+                        "label": "string",
+                        "value": "number",
+                        "id": "number",
+                        "svgcolor": "string"
+                    }
+                ]
+            }
+        ]
+ },
+ "chains": {
+  "ToggleAC": {
+   "description": "",
+   "variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+   "root": "callModuleFunction1",
+   "actions": {
+                "callModuleFunction1": {
+                    "module": "vb/action/builtin/callModuleFunctionAction",
+                    "parameters": {
+                        "module": "{{$page.functions}}",
+                        "functionName": "toggleOrentation",
+                        "params": [
+                            "{{ $page.variables.orientation }}"
+                        ],
+                        "returnType": "string"
+                    },
+                    "outcomes": {
+                        "success": "assignVariables1"
+                    }
+                },
+                "assignVariables1": {
+                    "module": "vb/action/builtin/assignVariablesAction",
+                    "parameters": {
+                        "$page.variables.orientation": {
+                            "source": "{{ $chain.results.callModuleFunction1 }}"
+                        }
+                    }
+                }
+   }
+  },
+        "loadCustomerToProductADP": {
+            "root": "callRestEndPoint",
+            "description": "",
+            "actions": {
+                "assignVariables1": {
+                    "module": "vb/action/builtin/assignVariablesAction",
+                    "parameters": {
+                        "$page.variables.customertoproductARR": {
+                            "source": "{{ $chain.results.getSBDP }}"
+                        }
+                    },
+                    "outcomes": {
+                        "success": "printCustomerARR"
+                    }
+                },
+                "getSBDP": {
+                    "module": "vb/action/builtin/callModuleFunctionAction",
+                    "parameters": {
+                        "module": "{{$page.functions}}",
+                        "functionName": "getSBDP",
+                        "params": [
+                            "{{ $chain.results.callRestEndPoint.body }}"
+                        ],
+                        "returnType": "any"
+                    },
+                    "outcomes": {
+                        "success": "assignVariables1"
+                    }
+                },
+                "callRestEndPoint": {
+                    "module": "vb/action/builtin/restAction",
+                    "parameters": {
+                        "endpoint": "customertoproduct/getCustomertoproduct",
+                        "responseType": "any"
+                    },
+                    "outcomes": {
+                        "success": "getSBDP",
+                        "failure": "getSBDP"
+                    }
+                },
+                "printCustomerARR": {
+                    "module": "vb/action/builtin/callModuleFunctionAction",
+                    "parameters": {
+                        "module": "{{$page.functions}}",
+                        "functionName": "printVariable",
+                        "params": [
+                            "{{ $page.variables.customertoproductARR }}"
+                        ],
+                        "returnType": "any"
+                    },
+                    "outcomes": {
+                        "success": "getHandlerFNC"
+                    }
+                },
+                "callComponentMethod1": {
+                    "module": "vb/action/builtin/callComponentMethodAction",
+                    "parameters": {
+                        "component": "{{ document.getElementById('1326890') }}",
+                        "method": "refresh"
+                    }
+                },
+                "getHandlerFNC": {
+                    "module": "vb/action/builtin/callModuleFunctionAction",
+                    "parameters": {
+                        "module": "{{$page.functions}}",
+                        "functionName": "getHandler"
+                    },
+                    "outcomes": {
+                        "success": "assignVariables2"
+                    }
+                },
+                "assignVariables2": {
+                    "module": "vb/action/builtin/assignVariablesAction",
+                    "parameters": {
+                        "$page.variables.handler": {
+                            "source": "{{ $chain.results.getHandlerFNC }}"
+                        }
+                    },
+                    "outcomes": {
+                        "success": "callComponentMethod1"
+                    }
+                }
+            }
+        }
+ },
+ "eventListeners": {
+  "ojButton7832788931OjAction": {
+			"chains": [
+				{
+					"chainId": "ToggleAC",
+					"parameters": {
+						"detail": "{{ $event.detail }}"
+					}
+				}
+			]
+		},
+        "vbEnter": {
+            "chains": [
+                {
+                    "chainId": "loadCustomerToProductADP",
+                    "parameters": {}
+                }
+            ]
+        }
+ },
+ "imports": {
+		"components": {
+			"oj-chart": {
+				"path": "ojs/ojchart"
+			},
+			"oj-button": {
+				"path": "ojs/ojbutton"
+			},
+			"oj-toolbar": {
+				"path": "ojs/ojtoolbar"
+			}
+		}
+	}
+}

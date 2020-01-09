@@ -1,0 +1,425 @@
+{
+ "pageModelVersion": "18.4.1",
+ "title": "",
+ "description": "",
+ "variables": {
+  "page": {
+			"type": "number",
+			"defaultValue": "1"
+		},
+  "page_size": {
+			"type": "string",
+			"defaultValue": "5"
+		},
+  "getOrdersListSDP": {
+			"type": "vb/ServiceDataProvider",
+			"defaultValue": {
+				"endpoint": "orderList/getOrders",
+				"idAttribute": "ordernumber",
+				"itemsPath": "items",
+				"responseType": "page:getOrdersResponse",
+				"uriParameters": {
+					"page": "{{ $variables.page }}"
+				}
+			}
+		},
+  "orderSelected": {
+			"type": "OrderSelected"
+		},
+  "l_orderNumber": {
+			"type": "string",
+			"defaultValue": "10417"
+		},
+  "getOrderOrdernumberListSDP": {
+   "type": "vb/ServiceDataProvider",
+            "defaultValue": {
+                "endpoint": "orderDetails/getOrderOrdernumber",
+                "responseType": "getOrderOrdernumberResponse",
+                "itemsPath": "items",
+                "uriParameters": {
+                    "ordernumber": "{{ $variables.l_orderNumber }}"
+                }
+            }
+  }
+ },
+ "types": {
+  "getOrdersResponse": {
+			"items": [
+				{
+					"ordernumber": "number",
+					"customername": "string",
+					"contactfirstname": "string",
+					"orderdate": "string",
+					"status": "string"
+				}
+			]
+		},
+  "@decorators.getOrdersResponse": {
+			"endpoint": "getOrders",
+			"service": "orderList",
+			"path": "response"
+		},
+  "OrderSelected": {
+			"contactFirstName": "string",
+			"ordernumber": "string"
+		},
+  "getOrderOrdernumberResponse": {
+			"items": [
+				{
+					"id": "number",
+					"ordernumber": "number",
+					"priceeach": "number",
+					"orderlinenumber": "number",
+					"productcode": "string",
+					"customername": "string",
+					"phone": "string",
+					"addressline1": "string",
+					"city": "string",
+					"postalcode": "string",
+					"country": "string",
+					"contactlastname": "string",
+					"contactfirstname": "string"
+				}
+			]
+		},
+  "@decorators.getOrderOrdernumberResponse": {
+			"endpoint": "getOrderOrdernumber",
+			"service": "orderDetails",
+			"path": "response"
+		},
+        "@decorators.getOrders": {
+            "endpoint": "getOrders",
+            "service": "orderList",
+            "path": "response"
+        },
+        "getOrders": {
+            "items": [
+                {
+                    "ordernumber": "number",
+                    "customername": "string",
+                    "contactfirstname": "string",
+                    "orderdate": "string",
+                    "status": "string"
+                }
+            ],
+            "first": {
+                "$ref": "string"
+            },
+            "next": {
+                "$ref": "string"
+            }
+        }
+ },
+ "chains": {
+  "TableFirstSelectedRowChangeChain1": {
+			"description": "",
+			"variables": {
+				"rowKey": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"rowData": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "assignVariables1",
+			"actions": {
+				"assignVariables1": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.orderSelected": {
+							"source": "{{ $chain.variables.rowData.data }}",
+							"auto": "ifNoMappings"
+						}
+					},
+					"outcomes": {
+						"success": "assignVariables2"
+					}
+				},
+				"assignVariables2": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.l_orderNumber": {
+							"source": "{{ $chain.variables.rowData.data.ordernumber }}"
+						}
+					},
+					"outcomes": {
+						"success": "callModuleFunction1"
+					}
+				},
+				"callModuleFunction1": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "openDialog",
+						"params": [
+							"{{ $page.variables.l_orderNumber }}"
+						]
+					},
+					"outcomes": {
+						"success": "callComponentMethod1"
+					}
+				},
+				"callComponentMethod1": {
+					"module": "vb/action/builtin/callComponentMethodAction",
+					"parameters": {
+						"component": "{{ document.getElementById('oj-table-649402537-1') }}",
+						"method": "setProperty",
+						"params": [
+							{
+								"selection": "[]"
+							}
+						]
+					}
+				}
+			}
+		},
+  "NextClicked": {
+			"description": "",
+			"variables": {
+				"value": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "nextFunc",
+			"actions": {
+				"nextFunc": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "next",
+						"params": [
+							"{{ $page.variables.page }}"
+						],
+						"returnType": "string"
+					},
+					"outcomes": {
+						"success": "assignVariables1"
+					}
+				},
+				"assignVariables1": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.page": {
+							"source": "{{ $chain.results.nextFunc }}"
+						}
+					},
+					"outcomes": {
+						"success": "assignVariables2"
+					}
+				},
+				"assignVariables2": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.l_orderNumber": {
+							"source": "{{ \"1\" }}"
+						}
+					},
+					"outcomes": {
+						"success": "resetSelectionForTable"
+					}
+				},
+				"resetSelectionForTable": {
+					"module": "vb/action/builtin/callComponentMethodAction",
+					"parameters": {
+						"component": "{{ document.getElementById('oj-table-649402537-1') }}",
+						"method": "setProperty",
+						"params": [
+							{
+								"selection": ""
+							}
+						]
+					}
+				}
+			},
+			"returnType": "any"
+		},
+  "InputTextValueChangeChain": {
+			"description": "",
+			"variables": {
+				"value": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "callModuleFunction1",
+			"actions": {
+				"callModuleFunction1": {
+					"module": "vb/action/builtin/callModuleFunctionAction"
+				}
+			}
+		},
+  "Previous": {
+			"description": "",
+			"variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "callNext",
+			"actions": {
+				"assignVariables1": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.page": {
+							"source": "{{ $chain.results.callNext }}"
+						}
+					}
+				},
+				"callNext": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "previous",
+						"params": [
+							"{{ $page.variables.page }}"
+						]
+					},
+					"outcomes": {
+						"success": "assignVariables1"
+					}
+				}
+			}
+		},
+        "OrderNumberClickedAC": {
+            "description": "",
+            "variables": {
+                "detail": {
+                    "required": true,
+                    "type": "any",
+                    "input": "fromCaller"
+                },
+                "key": {
+                    "required": true,
+                    "type": "any",
+                    "input": "fromCaller"
+                },
+                "current": {
+                    "required": true,
+                    "type": "any",
+                    "input": "fromCaller"
+                }
+            },
+            "root": "assignVariables1",
+            "actions": {
+                "assignVariables1": {
+                    "module": "vb/action/builtin/assignVariablesAction",
+                    "parameters": {
+                        "$page.variables.l_orderNumber": {
+                            "source": "{{ $chain.variables.key }}"
+                        }
+                    },
+                    "outcomes": {
+                        "success": "callModuleFunction1"
+                    }
+                },
+                "callModuleFunction1": {
+                    "module": "vb/action/builtin/callModuleFunctionAction",
+                    "parameters": {
+                        "module": "{{$page.functions}}",
+                        "functionName": "openDialog",
+                        "params": [
+                            "{{ $chain.variables.key }}"
+                        ]
+                    }
+                }
+            }
+        }
+ },
+ "eventListeners": {
+  "ojButtonsetOne6494025371Value": {
+			"chains": [
+				{
+					"chainId": "NextClicked",
+					"parameters": {
+						"value": "{{ $event.detail.value }}"
+					}
+				}
+			]
+		},
+  "ojInputText6494025372Value": {
+			"chains": [
+				{
+					"chainId": "InputTextValueChangeChain",
+					"parameters": {
+						"value": "{{ $event.detail.value }}"
+					}
+				}
+			]
+		},
+  "ojButton6494025371Click": {
+			"chains": [
+				{
+					"chainId": "NextClicked"
+				}
+			]
+		},
+  "ojButton6494025372Click": {
+			"chains": [
+				{
+					"chainId": "Previous",
+					"parameters": {
+						"detail": "{{ $event.detail }}"
+					}
+				}
+			]
+		},
+        "a6494025371Click": {
+            "chains": [
+                {
+                    "chainId": "OrderNumberClickedAC",
+                    "parameters": {
+                        "detail": "{{ $event.detail }}",
+                        "key": "{{ $current.key }}",
+                        "current": "{{ $current }}"
+                    }
+                }
+            ]
+        }
+ },
+ "imports": {
+		"components": {
+			"oj-list-view": {
+				"path": "ojs/ojlistview"
+			},
+			"oj-vb-list-item": {
+				"path": "vb/components/list-item/loader"
+			},
+			"oj-button": {
+				"path": "ojs/ojbutton"
+			},
+			"oj-label": {
+				"path": "ojs/ojlabel"
+			},
+			"oj-combobox-one": {
+				"path": "ojs/ojselectcombobox"
+			},
+			"oj-option": {
+				"path": "ojs/ojoption"
+			},
+			"oj-table": {
+				"path": "ojs/ojtable"
+			},
+			"oj-dialog": {
+				"path": "ojs/ojdialog"
+			},
+			"oj-input-text": {
+				"path": "ojs/ojinputtext"
+			},
+			"oj-buttonset-one": {
+				"path": "ojs/ojbutton"
+			},
+			"oj-rating-gauge": {
+				"path": "ojs/ojgauge"
+			}
+		}
+	}
+}

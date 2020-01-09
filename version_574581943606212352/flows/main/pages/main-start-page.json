@@ -1,0 +1,1008 @@
+{
+ "pageModelVersion": "18.4.1",
+ "title": "",
+ "description": "",
+ "variables": {
+  "getCat": {
+			"type": "vb/ServiceDataProvider",
+			"defaultValue": {
+				"endpoint": "categories/getCategories",
+				"responseType": "getCategories",
+				"itemsPath": "items",
+				"idAttribute": "id",
+				"uriParameters": {
+					"category": "{{ $variables.categorySelected }}"
+				}
+			},
+			"input": "fromCaller"
+		},
+  "allproducts": {
+			"type": "vb/ServiceDataProvider",
+			"defaultValue": {
+				"endpoint": "products/getProducts",
+				"responseType": "getProducts",
+				"itemsPath": "items",
+				"uriParameters": {
+					"category": "{{ $variables.categorySelected }}"
+				},
+				"idAttribute": "id"
+			}
+		},
+  "categorySelected": {
+			"type": "string",
+			"defaultValue": "1"
+		},
+  "ShoppingCart": {
+			"type": "object[]",
+			"defaultValue": [
+				{
+					"item_description": "Description"
+				}
+			],
+			"persisted": "none"
+		},
+  "productDetails": {
+			"type": "vb/ServiceDataProvider",
+			"defaultValue": {
+				"endpoint": "productDetails/getProductdetails",
+				"responseType": "getDetails",
+				"uriParameters": {
+					"id": "{{ $variables.product_id }}"
+				},
+				"itemsPath": "items",
+				"idAttribute": "id"
+			}
+		},
+  "product_id": {
+			"type": "string",
+			"defaultValue": "152"
+		},
+  "ShoppingCartProductDetails": {
+			"type": "shoppingCartItem"
+		},
+  "ShoppingCartArrayDP": {
+			"type": "vb/ArrayDataProvider",
+			"defaultValue": {},
+			"persisted": "none"
+		},
+  "total": {
+			"type": "string"
+		},
+  "refreshRating": {
+			"type": "number"
+		},
+  "getRatingListSDP": {
+			"type": "vb/ServiceDataProvider",
+			"defaultValue": {
+				"endpoint": "ratings/getRating",
+				"idAttribute": "one",
+				"itemsPath": "items",
+				"responseType": "page:getRatingResponse",
+				"uriParameters": {
+					"refresh": "{{ $variables.refreshRating }}"
+				}
+			}
+		},
+  "ratingArrayDP": {
+			"type": "vb/ArrayDataProvider"
+		},
+        "chemicals": {
+            "type": "object[]",
+            "defaultValue": [
+                {
+                    "name": "Water Shoes",
+                    "image": "resources/images/4.jpg"
+                },
+                {
+                    "name": "Family Size Tent",
+                    "image": "resources/images/5.jpg"
+                },
+                {
+                    "name": "Lights",
+                    "image": "resources/images/6.jpg"
+                },
+                {
+                    "name": "Repair",
+                    "image": "resources/images/1.jpg"
+                },
+                {
+                    "name": "Ice Box",
+                    "image": "resources/images/2.jpg"
+                },
+                {
+                    "name": "Sleeping Bag",
+                    "image": "resources/images/3.jpg"
+                },
+                {
+                    "name": "Harness",
+                    "image": "resources/images/7.jpg"
+                },
+                {
+                    "name": "Camel Back - Hydra Pack",
+                    "image": "resources/images/8.jpg"
+                },
+                {
+                    "name": "Chair",
+                    "image": "resources/images/9.jpg"
+                },
+                {
+                    "name": "Lights",
+                    "image": "resources/images/10.jpg"
+                },
+                {
+                    "name": "Air mattress",
+                    "image": "resources/images/11.jpg"
+                },
+                {
+                    "name": "Vessel",
+                    "image": "resources/images/12.jpg"
+                }
+            ]
+        }
+ },
+ "types": {
+		"@decorators.getCategories": {
+			"endpoint": "getCategories",
+			"service": "categories",
+			"path": "response"
+		},
+		"getCategories": {
+			"items": [
+				{
+					"cross_reference": "string",
+					"id": "number"
+				}
+			]
+		},
+		"@decorators.getProducts": {
+			"endpoint": "getProducts",
+			"service": "products",
+			"path": "response"
+		},
+		"getProducts": {
+			"items": [
+				{
+					"rownum": "number",
+					"id": "number",
+					"retailer_country": "string",
+					"order_method_type": "string",
+					"retailer_type": "string",
+					"product_line": "string",
+					"cross_reference": "string",
+					"item_description": "string",
+					"price": "number",
+					"category_id": "number",
+					"rating": "number",
+					"total_ratings": "any",
+					"total_rating": "number",
+					"fprice": "string",
+					"avg_rating": "any"
+				}
+			]
+		},
+		"getDetails": {
+			"id": "string",
+			"item_description": "string",
+			"price": "string",
+			"quantity": "number",
+			"total_ratings": "string"
+		},
+		"@decorators.shoppingCartItem": {
+			"endpoint": "getProducts",
+			"service": "products",
+			"path": "response.items[0]"
+		},
+		"shoppingCartItem": {
+			"id": "number",
+			"cross_reference": "string",
+			"item_description": "string",
+			"price": "string"
+		},
+		"@decorators.ratingType": {
+			"endpoint": "getRating",
+			"service": "ratings",
+			"path": "response"
+		},
+		"getRatingResponse": {
+			"items": [
+				{
+					"one": "number",
+					"two": "number",
+					"three": "number",
+					"four": "number",
+					"five": "number"
+				}
+			]
+		},
+		"@decorators.getRatingResponse": {
+			"endpoint": "getRating",
+			"service": "ratings",
+			"path": "response"
+		},
+		"ratingType": {
+			"items": [
+				{
+					"one": "number",
+					"two": "number",
+					"three": "number",
+					"four": "number",
+					"five": "number"
+				}
+			]
+		}
+	},
+ "chains": {
+		"CategorySelectionChange": {
+			"description": "",
+			"variables": {
+				"selection": {
+					"required": true,
+					"type": "any[]",
+					"input": "fromCaller"
+				},
+				"category_selected": {
+					"type": "string"
+				}
+			},
+			"root": "checkCategory",
+			"actions": {
+				"checkCategory": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "categoryChange",
+						"params": [
+							"{{ $chain.variables.selection[0] }}"
+						],
+						"returnType": "string"
+					},
+					"outcomes": {
+						"success": "assignVariables1"
+					}
+				},
+				"assignVariables1": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.categorySelected": {
+							"source": "{{ $chain.results.checkCategory }}"
+						}
+					}
+				}
+			}
+		},
+		"EmptyCartAC": {
+			"description": "",
+			"variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "emptyCart",
+			"actions": {
+				"assignVariables1": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.ShoppingCartArrayDP": {
+							"source": {
+								"data": "{{ $chain.results.emptyCart }}"
+							},
+							"reset": "empty",
+							"auto": "always"
+						}
+					},
+					"outcomes": {
+						"success": "emptyTotal"
+					}
+				},
+				"emptyCart": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "emptyCart"
+					},
+					"outcomes": {
+						"success": "assignVariables1"
+					}
+				},
+				"emptyTotal": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.total": {
+							"source": "0"
+						}
+					},
+					"outcomes": {
+						"success": "callCalculateCartCount"
+					}
+				},
+				"assignVariables2": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$application.variables.count": {
+							"source": "{{ $chain.results.callCalculateCartCount }}"
+						}
+					}
+				},
+				"callCalculateCartCount": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "calculateCartCount",
+						"params": [
+							"{{ $page.variables.ShoppingCartArrayDP.data }}"
+						]
+					},
+					"outcomes": {
+						"success": "assignVariables2"
+					}
+				}
+			}
+		},
+		"QuantityChangedAC": {
+			"description": "",
+			"variables": {
+				"value": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"key": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"current": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"detail": {
+					"type": "string",
+					"required": false,
+					"input": "fromCaller"
+				}
+			},
+			"root": "callModuleFunction1",
+			"actions": {
+				"callModuleFunction1": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "quantityChanged",
+						"params": [
+							"{{ $chain.variables.detail }}",
+							"{{ $chain.variables.current }}",
+							"{{ $chain.variables.value }}",
+							"{{ $page.variables.ShoppingCartArrayDP.data }}"
+						],
+						"returnType": "number"
+					},
+					"outcomes": {
+						"success": "assignVariables1"
+					}
+				},
+				"assignVariables1": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.total": {
+							"source": "{{ $chain.results.callModuleFunction1 }}"
+						}
+					}
+				}
+			}
+		},
+		"RemoveItemAC": {
+			"description": "",
+			"variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"key": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"current": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "RemoveItemAC",
+			"actions": {
+				"assignVariables1": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.ShoppingCartArrayDP": {
+							"source": {
+								"data": "{{ $chain.results.RemoveItemAC }}"
+							},
+							"reset": "empty",
+							"auto": "always",
+							"mapping": {
+								"$target.data": {
+									"source": "$source.data",
+									"reset": "empty"
+								}
+							}
+						}
+					},
+					"outcomes": {
+						"success": "cartTotal"
+					}
+				},
+				"assignVariables2": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.total": {
+							"source": "{{ $chain.results.cartTotal }}"
+						}
+					},
+					"outcomes": {
+						"success": "calculateCartCount"
+					}
+				},
+				"RemoveItemAC": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "removeItem",
+						"params": [
+							"{{ $chain.variables.key }}",
+							"{{ $page.variables.ShoppingCartArrayDP.data }}"
+						],
+						"returnType": "getDetails[]"
+					},
+					"outcomes": {
+						"success": "assignVariables1"
+					}
+				},
+				"calculateCartCount": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "calculateCartCount",
+						"params": [
+							"{{ $page.variables.ShoppingCartArrayDP.data }}"
+						],
+						"returnType": "number"
+					},
+					"outcomes": {
+						"success": "assignVariables3"
+					}
+				},
+				"assignVariables3": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$application.variables.count": {
+							"source": "{{ $chain.results.calculateCartCount }}"
+						}
+					}
+				},
+				"cartTotal": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "cartTotal",
+						"params": [
+							"{{ $page.variables.ShoppingCartArrayDP.data }}"
+						],
+						"returnType": "number"
+					},
+					"outcomes": {
+						"success": "assignVariables2"
+					}
+				}
+			}
+		},
+		"AddToCartAC": {
+			"description": "",
+			"variables": {
+				"firstSelectedItem": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "callModuleFunction1",
+			"actions": {
+				"callModuleFunction1": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "consoleLog",
+						"params": [
+							"{{ $chain.variables.firstSelectedItem }}"
+						],
+						"returnType": "getDetails[]"
+					},
+					"outcomes": {
+						"success": "assignVariables4"
+					}
+				},
+				"assignVariables4": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.ShoppingCartArrayDP": {
+							"source": {
+								"data": "{{ $chain.results.callModuleFunction1 }}"
+							},
+							"reset": "empty",
+							"auto": "always"
+						}
+					},
+					"outcomes": {
+						"success": "calculateTotal"
+					}
+				},
+				"calculateTotal": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "cartTotal",
+						"params": [
+							"{{ $page.variables.ShoppingCartArrayDP.data }}"
+						],
+						"returnType": "number"
+					},
+					"outcomes": {
+						"success": "assignVariables1"
+					}
+				},
+				"assignVariables1": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.total": {
+							"source": "{{ $chain.results.calculateTotal }}"
+						}
+					},
+					"outcomes": {
+						"success": "calculateCartCount"
+					}
+				},
+				"calculateCartCount": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "calculateCartCount",
+						"params": [
+							"{{ $page.variables.ShoppingCartArrayDP.data }}"
+						],
+						"returnType": "number"
+					},
+					"outcomes": {
+						"success": "assignVariables2"
+					}
+				},
+				"assignVariables2": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$application.variables.count": {
+							"source": "{{ $chain.results.calculateCartCount }}"
+						}
+					},
+					"outcomes": {
+						"success": "globalSCAssign"
+					}
+				},
+				"globalSCAssign": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$application.variables.scGlobalADP": {
+							"source": {
+								"data": "{{ $chain.results.callModuleFunction1 }}"
+							},
+							"reset": "empty",
+							"auto": "always"
+						}
+					}
+				}
+			}
+		},
+		"RatingGaugeMouseoverChain": {
+			"description": "",
+			"variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"key": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"current": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "generateRandom",
+			"actions": {
+				"callModuleFunction1": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "mouseOverRating",
+						"params": [
+							"{{ $chain.results.getVisbileRow }}",
+							"{{ $chain.results.getVisbileRow }}",
+							"{{ $chain.results.getVisbileRow }}",
+							"{{ $chain.variables.detail }}",
+							"{{ $chain.variables.current }}"
+						]
+					}
+				},
+				"generateRandom": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "random",
+						"returnType": "number"
+					},
+					"outcomes": {
+						"success": "refreshTable"
+					}
+				},
+				"refreshTable": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.refreshRating": {
+							"source": "{{ $chain.results.generateRandom }}"
+						}
+					},
+					"outcomes": {
+						"success": "callModuleFunction1"
+					}
+				}
+			}
+		},
+		"AddToCardButtonAction": {
+			"description": "",
+			"variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"key": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"current": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "addToCartModuleFunction",
+			"actions": {
+				"addToCartModuleFunction": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "addToCartButton",
+						"params": [
+							"{{ $chain.variables.current }}",
+							"{{ $chain.variables.detail }}",
+							"{{ $chain.variables.key }}"
+						],
+						"returnType": ""
+					},
+					"outcomes": {
+						"success": "assignSC"
+					}
+				},
+				"assignSC": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.ShoppingCartArrayDP": {
+							"source": {
+								"data": "{{ $chain.results.addToCartModuleFunction }}"
+							},
+							"reset": "empty",
+							"auto": "always"
+						}
+					},
+					"outcomes": {
+						"success": "calculateTotal$"
+					}
+				},
+				"assignVariables1": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$page.variables.total": {
+							"source": "{{ $chain.results.calculateTotal$ }}"
+						}
+					},
+					"outcomes": {
+						"success": "calculateCartCount"
+					}
+				},
+				"calculateTotal$": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "cartTotal",
+						"params": [
+							"{{ $page.variables.ShoppingCartArrayDP.data }}"
+						],
+						"returnType": "number"
+					},
+					"outcomes": {
+						"success": "assignVariables1"
+					}
+				},
+				"calculateCartCount": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "calculateCartCount",
+						"params": [
+							"{{ $page.variables.ShoppingCartArrayDP.data }}"
+						],
+						"returnType": "number"
+					},
+					"outcomes": {
+						"success": "assignVariables2"
+					}
+				},
+				"assignVariables2": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$application.variables.count": {
+							"source": "{{ $chain.results.calculateCartCount }}"
+						}
+					},
+					"outcomes": {
+						"success": "assignVariables3"
+					}
+				},
+				"assignVariables3": {
+					"module": "vb/action/builtin/assignVariablesAction",
+					"parameters": {
+						"$application.variables.scGlobalADP": {
+							"source": {
+								"data": "{{ $chain.results.addToCartModuleFunction }}"
+							},
+							"reset": "empty",
+							"auto": "always"
+						}
+					}
+				}
+			}
+		},
+		"HyperlinkClickChain": {
+			"description": "",
+			"variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"key": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"current": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "",
+			"actions": {}
+		},
+		"HyperlinkClickChain1": {
+			"description": "",
+			"variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"key": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				},
+				"current": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "",
+			"actions": {}
+		},
+		"AssignShoppingCartAC": {
+			"root": "",
+			"description": "",
+			"actions": {}
+		},
+		"CheckOutClicked": {
+			"description": "",
+			"variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "navigateToPage1",
+			"actions": {
+				"navigateToPage1": {
+					"module": "vb/action/builtin/navigateToPageAction",
+					"parameters": {
+						"page": "main-ship-to"
+					}
+				}
+			}
+		},
+		"loadShoppingCart": {
+			"root": "refreshSCComponent",
+			"description": "",
+			"actions": {
+				"refreshSCComponent": {
+					"module": "vb/action/builtin/callComponentMethodAction",
+					"parameters": {
+						"component": "{{ document.getElementById('oj-list-view-1084591017-1') }}",
+						"method": "refresh"
+					}
+				}
+			}
+		},
+		"triggerIntro": {
+			"root": "callModuleFunction1",
+			"description": "",
+			"actions": {
+				"callModuleFunction1": {
+					"module": "vb/action/builtin/callModuleFunctionAction",
+					"parameters": {
+						"module": "{{$page.functions}}",
+						"functionName": "triggerIntro"
+					}
+				}
+			}
+		}
+	},
+ "eventListeners": {
+		"ojListView10845910171Selection": {
+			"chains": [
+				{
+					"chainId": "ListViewSelectionChange",
+					"parameters": {
+						"selection": "{{ $event.detail.value }}"
+					}
+				}
+			]
+		},
+		"ojListView10845910172Selection": {
+			"chains": [
+				{
+					"chainId": "CategorySelectionChange",
+					"parameters": {
+						"selection": "{{ $event.detail.value }}"
+					}
+				}
+			]
+		},
+		"A10845910171Click": {
+			"chains": [
+				{
+					"chainId": "RemoveItemAC",
+					"parameters": {
+						"detail": "{{ $event.detail }}",
+						"current": "{{ $current }}",
+						"key": "{{ $current.data.id }}"
+					}
+				}
+			]
+		},
+		"quantityValue": {
+			"chains": [
+				{
+					"chainId": "QuantityChangedAC",
+					"parameters": {
+						"value": "{{ $event.detail.value }}",
+						"key": "{{ $current.key }}",
+						"current": "{{ $current }}",
+						"detail": "{{ $current.data.id }}"
+					}
+				}
+			]
+		},
+		"a10845910171Click": {
+			"chains": [
+				{
+					"chainId": "EmptyCartAC",
+					"parameters": {
+						"detail": "{{ $event.detail }}"
+					}
+				}
+			]
+		},
+		"OJBUTTON10845910171OjAction": {
+			"chains": [
+				{
+					"chainId": "AddToCardButtonAction",
+					"parameters": {
+						"detail": "{{ $event.detail }}",
+						"key": "{{ $current.key }}",
+						"current": "{{ $current }}"
+					}
+				}
+			]
+		},
+		"a10845910173Click": {
+			"chains": [
+				{
+					"chainId": "RatingGaugeMouseoverChain"
+				}
+			]
+		},
+		"a10845910172Click": {
+			"chains": [
+				{
+					"chainId": "CheckOutClicked",
+					"parameters": {
+						"detail": "{{ $event.detail }}"
+					}
+				}
+			]
+		}
+	},
+ "imports": {
+		"components": {
+			"oj-menu": {
+				"path": "ojs/ojmenu"
+			},
+			"oj-option": {
+				"path": "ojs/ojoption"
+			},
+			"oj-button": {
+				"path": "ojs/ojbutton"
+			},
+			"oj-table": {
+				"path": "ojs/ojtable"
+			},
+			"oj-avatar": {
+				"path": "ojs/ojavatar"
+			},
+			"oj-navigation-list": {
+				"path": "ojs/ojnavigationlist"
+			},
+			"oj-list-view": {
+				"path": "ojs/ojlistview"
+			},
+			"oj-vb-list-item": {
+				"path": "vb/components/list-item/loader"
+			},
+			"oj-rating-gauge": {
+				"path": "ojs/ojgauge"
+			},
+			"oj-label": {
+				"path": "ojs/ojlabel"
+			},
+			"oj-input-text": {
+				"path": "ojs/ojinputtext"
+			},
+			"oj-masonry-layout": {
+				"path": "ojs/ojmasonrylayout"
+			},
+			"oj-label-value": {
+				"path": "ojs/ojlabelvalue"
+			},
+			"oj-film-strip": {
+				"path": "ojs/ojfilmstrip"
+			}
+		}
+	}
+}

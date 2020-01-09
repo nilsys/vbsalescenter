@@ -1,0 +1,374 @@
+{
+  "pageModelVersion": "18.4.1",
+  "title": "",
+  "description": "",
+  "variables": {
+    "getUsersListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom/getUsers",
+        "idAttribute": "id",
+        "itemsPath": "",
+        "responseType": "page:getUsersResponse"
+      }
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom2/getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+        "idAttribute": "id",
+        "itemsPath": "",
+        "responseType": "page:getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse"
+      }
+    },
+    "userContext": {
+      "type": "string"
+    },
+    "getUsersListSDP2": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom/getUsers",
+        "idAttribute": "login",
+        "itemsPath": "",
+        "responseType": "page:getUsersResponse2"
+      }
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feListSDP2": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom2/getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+        "idAttribute": "id",
+        "itemsPath": "",
+        "responseType": "page:getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse2",
+        "uriParameters": {
+          "user": "{{ $page.variables.userContext }}"
+        }
+      }
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feListSDP3": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom2/getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+        "idAttribute": "id",
+        "itemsPath": "",
+        "responseType": "page:getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse3",
+        "uriParameters": {
+          "user": "{{ $page.variables.userContext }}"
+        }
+      }
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feListSDP4": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom2/getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+        "idAttribute": "id",
+        "itemsPath": "",
+        "responseType": "page:getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse4",
+        "uriParameters": {
+          "user": "{{ $page.variables.userContext }}"
+        }
+      }
+    }
+  },
+  "types": {
+    "getUsersResponse": [
+      {
+        "id": "number",
+        "avatar_url": "string",
+        "followers_url": "string",
+        "organizations_url": "string"
+      }
+    ],
+    "@decorators.getUsersResponse": {
+      "endpoint": "getUsers",
+      "service": "apiGithubCom",
+      "path": "response"
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse": [
+      {
+        "id": "number",
+        "contributors_url": "string",
+        "commits_url": "string",
+        "comments_url": "string",
+        "contents_url": "string",
+        "compare_url": "string"
+      }
+    ],
+    "@decorators.getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse": {
+      "endpoint": "getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+      "service": "apiGithubCom2",
+      "path": "response"
+    },
+    "getUsersResponse2": [
+      {
+        "login": "string",
+        "id": "number",
+        "node_id": "string",
+        "avatar_url": "string"
+      }
+    ],
+    "@decorators.getUsersResponse2": {
+      "endpoint": "getUsers",
+      "service": "apiGithubCom",
+      "path": "response"
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse2": [
+      {
+        "id": "number",
+        "full_name": "string",
+        "description": "string",
+        "has_issues": "boolean",
+        "has_downloads": "boolean",
+        "has_pages": "boolean"
+      }
+    ],
+    "@decorators.getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse2": {
+      "endpoint": "getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+      "service": "apiGithubCom2",
+      "path": "response"
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse3": [
+      {
+        "id": "number",
+        "description": "string",
+        "pulls_url": "string",
+        "size": "number",
+        "forks_count": "number",
+        "forks": "number"
+      }
+    ],
+    "@decorators.getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse3": {
+      "endpoint": "getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+      "service": "apiGithubCom2",
+      "path": "response"
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse4": [
+      {
+        "id": "number",
+        "description": "string",
+        "fork": "boolean",
+        "created_at": "string",
+        "forks_count": "number"
+      }
+    ],
+    "@decorators.getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse4": {
+      "endpoint": "getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+      "service": "apiGithubCom2",
+      "path": "response"
+    },
+    "@decorators.getUserName": {
+      "endpoint": "getUserName",
+      "service": "apiGithubComUserName",
+      "path": "response"
+    },
+    "getUserName": {
+      "name": "string"
+    }
+  },
+  "chains": {
+    "AvatarClick": {
+      "description": "",
+      "variables": {
+        "detail": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "key": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "current": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "user_name": {
+          "type": "string",
+          "required": false,
+          "input": "none"
+        }
+      },
+      "root": "",
+      "actions": {}
+    },
+    "ListViewSelectionChange": {
+      "description": "",
+      "variables": {
+        "selection": {
+          "required": true,
+          "type": "any[]",
+          "input": "fromCaller"
+        }
+      },
+      "root": "assignVariables1",
+      "actions": {
+        "assignVariables1": {
+          "module": "vb/action/builtin/assignVariablesAction",
+          "parameters": {
+            "$page.variables.userContext": {
+              "source": "{{ $chain.variables.selection[0] }}"
+            }
+          },
+          "outcomes": {
+            "success": "callComponentMethod2"
+          }
+        },
+        "callComponentMethod2": {
+          "module": "vb/action/builtin/callComponentMethodAction",
+          "parameters": {
+            "component": "{{ document.getElementById('oj-list-view-1134464019-3') }}",
+            "method": "refresh"
+          }
+        }
+      }
+    },
+    "ParagraphClick": {
+      "description": "",
+      "variables": {
+        "detail": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "key": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "current": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        }
+      },
+      "root": "",
+      "actions": {}
+    },
+    "ParagraphClick1": {
+      "description": "",
+      "variables": {
+        "detail": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "key": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "current": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        }
+      },
+      "root": "",
+      "actions": {}
+    },
+    "HyperlinkClick": {
+      "description": "",
+      "variables": {
+        "detail": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "key": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "current": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        }
+      },
+      "root": "",
+      "actions": {}
+    }
+  },
+  "eventListeners": {
+    "ojAvatar11344640191Click": {
+      "chains": [
+        {
+          "chainId": "AvatarClick"
+        }
+      ]
+    },
+    "ojListView11344640191Selection": {
+      "chains": [
+        {
+          "chainId": "ListViewSelectionChange",
+          "parameters": {
+            "selection": "{{ $event.detail.value }}"
+          }
+        }
+      ]
+    },
+    "P11344640191Click": {
+      "chains": [
+        {
+          "chainId": "ParagraphClick1",
+          "parameters": {
+            "detail": "{{ $event.detail }}",
+            "key": "{{ $current.key }}",
+            "current": "{{ $current }}"
+          }
+        }
+      ]
+    },
+    "a11344640191Click": {
+      "chains": [
+        {
+          "chainId": "HyperlinkClick",
+          "parameters": {
+            "detail": "{{ $event.detail }}",
+            "key": "{{ $current.key }}",
+            "current": "{{ $current }}"
+          }
+        }
+      ]
+    }
+  },
+  "imports": {
+    "components": {
+      "oj-list-view": {
+        "path": "ojs/ojlistview"
+      },
+      "oj-vb-list-item": {
+        "path": "vb/components/list-item/loader"
+      },
+      "oj-avatar": {
+        "path": "ojs/ojavatar"
+      },
+      "oj-label": {
+        "path": "ojs/ojlabel"
+      },
+      "oj-input-text": {
+        "path": "ojs/ojinputtext"
+      },
+      "oj-buttonset-one": {
+        "path": "ojs/ojbutton"
+      },
+      "oj-option": {
+        "path": "ojs/ojoption"
+      },
+      "oj-button": {
+        "path": "ojs/ojbutton"
+      },
+      "oj-tab-bar": {
+        "path": "ojs/ojnavigationlist"
+      },
+      "oj-navigation-list": {
+        "path": "ojs/ojnavigationlist"
+      },
+      "oj-toolbar": {
+        "path": "ojs/ojtoolbar"
+      }
+    }
+  }
+}

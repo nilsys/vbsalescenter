@@ -1,0 +1,65 @@
+<div class="oj-flex" data-vb-layout-type="grid">
+</div>
+<div class="oj-flex">
+
+    <div class="oj-flex-item oj-sm-12 oj-md-2">
+        <oj-button id="oj-button-1385031982-2" on-oj-action="[[$listeners.ojButton13850319822OjAction]]">Previous</oj-button>
+    </div>
+        <div class="oj-flex-item oj-sm-12 oj-md-2">
+        <oj-button on-oj-action="[[$listeners.ojButton13850319821OjAction]]" id="oj-button-1385031982-1">Next</oj-button>
+    </div>
+    <oj-label id="oj-label-1385031982-1" for="oj-select-one-1385031982-1" class="oj-flex-item oj-sm-12 oj-md-2">Page Size</oj-label>
+    <div class="oj-flex-item oj-sm-12 oj-md-1"></div>
+    <oj-select-one id="oj-select-one-1385031982-1" class="oj-flex-item oj-sm-12 oj-md-4" placeholder="5" on-value-changed="[[$listeners.ojSelectOne13850319821Value]]">
+        <oj-option value="5">5</oj-option>
+        <oj-option value="10">10</oj-option>
+        <oj-option value="15">15</oj-option>
+        <oj-option value="20">20</oj-option>
+    </oj-select-one>
+</div>
+<div class="oj-flex">
+    <oj-list-view id="oj-list-view-1385031982-1" class="oj-flex-item oj-sm-12 oj-md-4" on-selection-changed="[[$listeners.ojListView13850319821Selection]]" selection-mode="single" data="[[$page.variables.getOrgsOrgMembersPagePagePerPagePerPageListSDP4]]">
+        <template slot="itemTemplate">
+            <oj-vb-list-item>
+                <img slot="image" :src="[[$current.data.avatar_url]]" width="32" height="32">
+                <p slot="title1">
+                    <oj-bind-text value="[[$current.data.login]]"></oj-bind-text>
+                </p>
+            </oj-vb-list-item>
+        </template>
+    </oj-list-view>
+    <oj-list-view id="oj-list-view-1385031982-2" class="oj-flex-item oj-sm-12 oj-md-8" data="[[$page.variables.getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feListSDP4]]">
+        <template slot="itemTemplate">
+            <div class="oj-flex-items-pad">
+                <div class="oj-flex">
+                    <h3 class="oj-flex-item oj-sm-12 oj-md-12" :id="[['h1-1385031982-1-' + $current.index]]">
+                        <oj-bind-text value="[[$current.data.description]]"></oj-bind-text>
+                    </h3>
+                </div>
+                <div class="oj-flex">
+                    <oj-label class="oj-flex-item oj-sm-12 oj-md-2" :id="[['oj-label-1385031982-5-' + $current.index]]">url</oj-label>
+                    <p class="oj-flex-item oj-sm-12 oj-md-4" :id="[['p-1385031982-3-' + $current.index]]">
+                        <oj-bind-text value="[[$current.data.url]]"></oj-bind-text>
+                    </p>
+                </div>
+                <div class="oj-flex">
+                    <oj-label class="oj-flex-item oj-sm-12 oj-md-2" :id="[['oj-label-1385031982-6-' + $current.index]]">Forks</oj-label>
+                    <p class="oj-flex-item oj-sm-12 oj-md-4" :id="[['p-1385031982-4-' + $current.index]]">
+                        <oj-bind-text value="[[$current.data.forks_count]]"></oj-bind-text>
+                    </p>
+                </div>
+                <div class="oj-flex">
+                    <a target="_blank" class="oj-flex-item oj-sm-12 oj-md-6" :id="[['a-1385031982-1-' + $current.index]]" :href="[[$current.data.html_url]]"><oj-bind-text value="[[$current.data.html_url]]"></oj-bind-text></a>
+                </div>
+            </div>
+        </template>
+    </oj-list-view>
+</div>
+<div class="oj-flex">
+    <oj-label id="oj-label-1385031982-2" class="oj-flex-item oj-sm-12 oj-md-1"><oj-bind-text value="{{ $page.variables.current_user }}"></oj-bind-text></oj-label>
+</div>
+<div class="oj-flex">
+    <div class="oj-flex-item oj-sm-12 oj-md-2">
+        <oj-bind-text value="{{ $application.variables.org_global }}"></oj-bind-text>
+    </div>
+</div>

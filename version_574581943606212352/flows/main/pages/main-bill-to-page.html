@@ -1,0 +1,31 @@
+<div class="oj-flex oj-sm-flex-direction-column">
+    <h1 id="h1-1124357107-1" class="oj-flex-item">Choose Bill To Address</h1>
+     <div class="oj-flex-item oj-flex">
+         <div id="train-container" class="oj-flex-item oj-sm-12 oj-md-12">
+          <oj-train id="train" class="oj-train-stretch" style="max-width:700px;margin-left:auto;margin-right:auto;" selected-step="{{ $flow.variables.selectedStepValue }}" steps="{{ $flow.variables.steps }}" on-oj-select="[[$listeners.trainOjSelect]]">
+          </oj-train>
+          <br>
+<!--           <h3 id="currentStepText" data-bind="text: 'You are on ' + selectedStepLabel()" style="text-align: center">
+          </h3> -->
+          <br>
+        </div>
+    </div>
+    <oj-table summary="Sample Table" scroll-policy="loadMoreOnScroll" id="oj-table-1124357107-1" class="oj-flex-item" data="[[$page.variables.getAddressListSDP]]" columns='[{"headerText":"Select","template":"cellTemplate"},{"headerText":"id","field":"id"},{"headerText":"address","field":"address"},{"headerText":"city","field":"city"},{"headerText":"email","field":"email"},{"headerText":"first_name","field":"first_name"},{"headerText":"last_name","field":"last_name"},{"headerText":"zip","field":"zip"},{"headerText":"zip_num","field":"zip_num"}]' on-first-selected-row-changed="[[$listeners.ojTable11243571071FirstSelectedRow]]" selection-mode.row="single">
+        <template slot="cellTemplate">
+            <oj-radioset id="oj-radioset-112435710" value="{{ $variables.currentSelectedAddress }}">
+                <oj-option value="{{ $current.row.id }}"><oj-bind-text value="{{ $current.row.id }}"></oj-bind-text></oj-option>
+            </oj-radioset>
+        </template>
+    </oj-table>
+</div>
+<div class="oj-flex">
+    <div class="oj-flex oj-flex-item oj-sm-12 oj-md-6">
+        <div class="oj-flex-item oj-sm-12 oj-md-2">
+            <oj-button id="oj-button--121277093-1" class="demo-button-blue" on-click="[[$listeners.ojButton1212770931Click]]">Ship Address</oj-button>
+        </div>
+    </div>
+    <div class="oj-flex-item oj-sm-12 oj-md-5"></div>
+    <div class="oj-flex-item oj-sm-12 oj-md-1">
+        <oj-button id="oj-button--121277093-2" class="demo-button-blue">Order Summary</oj-button>
+    </div>
+</div>

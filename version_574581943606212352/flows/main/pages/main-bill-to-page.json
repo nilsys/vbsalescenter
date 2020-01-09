@@ -1,0 +1,161 @@
+{
+ "pageModelVersion": "19.1.3",
+ "title": "",
+ "description": "",
+ "variables": {
+		"getAddress": {
+			"type": "vb/ServiceDataProvider",
+			"defaultValue": {
+				"endpoint": "getAddress/getAddress",
+				"responseType": "getAddress",
+				"itemsPath": "items"
+			}
+		},
+		"getAddressListSDP": {
+			"type": "vb/ServiceDataProvider",
+			"defaultValue": {
+				"endpoint": "getAddress/getAddress",
+				"idAttribute": "id",
+				"itemsPath": "items",
+				"responseType": "page:getAddressResponse"
+			}
+		},
+		"currentSelectedAddress": {
+			"type": "string"
+		}
+	},
+ "types": {
+		"@decorators.getAddress": {
+			"endpoint": "getAddress",
+			"service": "getAddress",
+			"path": "response"
+		},
+		"getAddress": {
+			"items": [
+				{
+					"id": "number",
+					"first_name": "string",
+					"last_name": "string",
+					"company_name": "string",
+					"address": "string",
+					"city": "string",
+					"county": "string",
+					"state": "string",
+					"zip_num": "number",
+					"phone1": "string",
+					"phone2": "string",
+					"email": "string",
+					"web": "string",
+					"name": "string",
+					"zip": "string"
+				}
+			],
+			"hasMore": "boolean",
+			"limit": "number",
+			"offset": "number",
+			"count": "number",
+			"links": [
+				{
+					"rel": "string",
+					"href": "string"
+				}
+			]
+		},
+		"getAddressResponse": {
+			"items": [
+				{
+					"id": "number",
+					"first_name": "string",
+					"last_name": "string",
+					"address": "string",
+					"city": "string",
+					"zip_num": "number",
+					"email": "string",
+					"zip": "string"
+				}
+			]
+		},
+		"@decorators.getAddressResponse": {
+			"endpoint": "getAddress",
+			"service": "getAddress",
+			"path": "response"
+		}
+	},
+ "chains": {
+  "ButtonClickChain": {
+			"description": "",
+			"variables": {
+				"detail": {
+					"required": true,
+					"type": "any",
+					"input": "fromCaller"
+				}
+			},
+			"root": "navigateToPage1",
+			"actions": {
+				"navigateToPage1": {
+					"module": "vb/action/builtin/navigateToPageAction",
+					"parameters": {
+						"page": "main-ship-to"
+					}
+				}
+			}
+		},
+        "step": {
+            "root": "assignVariables1",
+            "description": "",
+            "actions": {
+                "assignVariables1": {
+                    "module": "vb/action/builtin/assignVariablesAction",
+                    "parameters": {
+                        "$flow.variables.selectedStepValue": {
+                            "source": "3"
+                        }
+                    }
+                }
+            }
+        }
+ },
+ "eventListeners": {
+  "ojButton1212770931Click": {
+			"chains": [
+				{
+					"chainId": "ButtonClickChain",
+					"parameters": {
+						"detail": "{{ $event.detail }}"
+					}
+				}
+			]
+		},
+        "vbEnter": {
+            "chains": [
+                {
+                    "chainId": "step",
+                    "parameters": {}
+                }
+            ]
+        }
+ },
+ "imports": {
+		"components": {
+			"oj-table": {
+				"path": "ojs/ojtable"
+			},
+			"oj-label": {
+				"path": "ojs/ojlabel"
+			},
+			"oj-radioset": {
+				"path": "ojs/ojradioset"
+			},
+			"oj-option": {
+				"path": "ojs/ojoption"
+			},
+			"oj-button": {
+				"path": "ojs/ojbutton"
+			},
+			"oj-train": {
+				"path": "ojs/ojtrain"
+			}
+		}
+	}
+}

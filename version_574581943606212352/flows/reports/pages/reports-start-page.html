@@ -1,0 +1,57 @@
+<div class="oj-flex">
+    <div class="oj-flex oj-flex-item oj-sm-12 oj-md-12">
+        <h1 id="h1--783278893-1" class="oj-flex-item">Sales Analytics</h1>
+        <div class="oj-flex-item oj-flex">
+            <div class="oj-flex-item oj-sm-12 oj-md-2">
+                <oj-button id="oj-button--783278893-1" on-oj-action="[[$listeners.ojButton7832788931OjAction]]" class="demo-button-blue">Toggle Orientation</oj-button>
+            </div>
+        </div>
+        <oj-chart type="bar" hover-behavior="dim" class="oj-sm-flex-initial oj-flex-item" style="max-width:100%;" id="oj-chart--783278893-1" data="[[$page.variables.getYrsalesListSDP]]" orientation="{{$page.variables.orientation}}" animation-on-data-change="auto" y-axis.title="Total" x-axis.title="Year" legend.title="Customer" stack="on" stack-label="on" animation-on-display="auto">
+            <template slot="itemTemplate">
+                <oj-chart-item value="[[$current.data.total]]" group-id="[[[$current.data.yr_date]]]" series-id="[[$current.data.customername]]"></oj-chart-item>
+            </template>
+        </oj-chart>
+         <oj-toolbar id="myToolbar" aria-label="Chart Display Options Toolbar" aria-controls="barChart" style="max-width:500px;width:100%;">
+                <!-- vertical/horizontal toggle button -->
+                <demo-chart-orientation-control id="orientationControl" type="bar" focus-management="none">
+                </demo-chart-orientation-control>
+                <span role="separator" aria-orientation="vertical" class="oj-toolbar-separator"></span>
+                <!-- unstacked/stacked toggle button -->
+                <demo-chart-stack-control id="stackControl" type="bar" focus-management="none">
+                </demo-chart-stack-control>
+            </oj-toolbar>
+    </div>
+</div>
+<div class="oj-flex">
+    <oj-chart type="bar" class="oj-sm-flex-initial oj-flex-item oj-sm-12 oj-md-12" style="max-width:100%;" id="oj-chart--783278893-2" data="[[$page.variables.getYrproductsListSDP]]" y-axis.title="total" x-axis.title="yr_date" legend.title="productline" orientation="{{$page.variables.orientation}}" animation-on-data-change="auto" stack="on">
+        <template slot="itemTemplate">
+            <oj-chart-item value="[[$current.data.total]]" group-id="[[[$current.data.yr_date]]]" series-id="[[$current.data.productline]]"></oj-chart-item>
+        </template>
+    </oj-chart>
+</div>
+<div class="oj-flex">
+   <div id="sunburst-container" class="oj-flex-item oj-sm-12 oj-md-12">
+          <oj-sunburst id="1326890" animation-on-display="auto" class="oj-sm-flex-initial 
+    oj-flex-item oj-sm-12 oj-md-12" animation-on-data-change="auto" color-label="Depth" size-label="Value" node-defaults.label-display="rotated" style="max-width:650px;width:100%; height:650px;" data="[[$page.variables.customertoproductARR]]">
+
+            <template slot="nodeTemplate">
+              <oj-sunburst-node label="[[ $current.data.label ]]" value="[[ $current.data.value ]]" color="[[$page.variables.handler.getValue($current.data.label)]]" oj-sunburst-node="">
+            </oj-sunburst-node></template> 
+        </oj-sunburst>
+        
+  </div>
+</div>
+<div class="oj-flex">
+   <div id="sunburst-container-1" class="oj-flex-item oj-sm-12 oj-md-12">
+          <oj-sunburst id="2-6890" 
+          animation-on-display="auto" class="oj-sm-flex-initial 
+    oj-flex-item oj-sm-12 oj-md-12" animation-on-data-change="auto" color-label="Depth" size-label="Value" node-defaults.label-display="rotated" style="max-width:650px;width:100%; height:650px;" 
+    data="{{ $variables.producttocustomerARR}}">
+
+            <template slot="nodeTemplate">
+              <oj-sunburst-node label="[[ $current.data.label ]]" value="[[ $current.data.value ]]" color="[[$page.variables.handler.getValue($current.data.label)]]" oj-sunburst-node="">
+            </oj-sunburst-node></template> 
+        </oj-sunburst>
+        
+  </div>
+</div> 

@@ -1,0 +1,22 @@
+<div class="oj-flex">
+    <h1 id="h1--2068363457-1" class="oj-flex-item oj-sm-12 oj-md-12">Create postAddress</h1>
+</div>
+<div class="oj-flex">
+    <oj-form-layout id="oj-form-layout--2068363457-1" label-edge="start" class="oj-flex-item oj-sm-12 oj-md-12">
+        <oj-input-text value="{{ $page.variables.postAddress.first_name }}" readonly="false" label-hint="First Name" id="oj-input-text--2068363457-3" required="true" placeholder="John"></oj-input-text>
+        <oj-input-text value="{{ $page.variables.postAddress.last_name }}" readonly="false" label-hint="Last Name" id="oj-input-text--2068363457-4" required="true" placeholder="Smith"></oj-input-text>
+        <oj-input-text value="{{ $page.variables.postAddress.street }}" readonly="false" label-hint="street" id="oj-input-text--2068363457-7" placeholder="200 Oracle Parway"></oj-input-text>
+        <oj-input-text value="{{ $page.variables.postAddress.city }}" readonly="false" label-hint="City" id="oj-input-text--2068363457-1" placeholder="Redwood City"></oj-input-text>
+        <oj-input-text value="{{ $page.variables.postAddress.state }}" readonly="false" label-hint="State" id="oj-input-text--2068363457-6" placeholder="CA"></oj-input-text>
+        <oj-input-text value="{{ $page.variables.postAddress.phone }}" readonly="false" label-hint="Phone" id="oj-input-text--2068363457-5">
+        </oj-input-text>
+        <oj-input-text value="{{ $page.variables.postAddress.zip }}" readonly="false" label-hint="Zip" id="oj-input-text--2068363457-8"></oj-input-text>
+        <oj-input-text value="{{ $page.variables.postAddress.email }}" readonly="false" label-hint="Email" id="oj-input-text--2068363457-2"></oj-input-text>
+    </oj-form-layout>
+</div>
+<div class="oj-flex">
+    <oj-toolbar id="oj-toolbar--2068363457-1" chroming="full" class="oj-flex-item oj-sm-12 oj-md-12">
+        <oj-button id="oj-button--2068363457-1" on-oj-action="[[$page.listeners.backButtonClicked]]">Cancel</oj-button>
+        <oj-button id="oj-button--2068363457-2" on-oj-action="[[$page.listeners.saveButtonClicked]]">Save</oj-button>
+    </oj-toolbar>
+</div>

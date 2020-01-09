@@ -1,0 +1,347 @@
+<!-- <div class="oj-flex">
+     <script type="text/html" id="emp_photo">
+             <td>
+              <span class="avatar" data-bind="attr: {style: 'background-image: url(' + $context.row.Photo + ')'}"></span>
+             </td>
+        </script>
+</div> -->
+<div class="oj-flex oj-flex-items-pad">
+    <div class="oj-flex oj-sm-flex-direction-column oj-flex-item oj-sm-12 oj-md-2" data-step="1" data-intro="This is a tooltip!">
+        <h3 class="oj-flex-item oj-sm-flex-initial" id="categories">Categories</h3>
+        <oj-list-view id="oj-list-view-1084591017-2" selection-mode="single" data="{{ $variables.getCat }}" on-selection-changed="[[$listeners.ojListView10845910172Selection]]" selection="[]" class="oj-flex-item">
+
+
+            <template slot="itemTemplate">
+
+
+                <div class="products">
+                    <div class="oj-flex">
+                        <p class="oj-flex-item oj-sm-12 oj-md-10" :id="[['P-1084591017-1-' + $current.index]]">
+                            <oj-bind-text value="{{ $current.data.cross_reference }}"></oj-bind-text>
+                        </p>
+                    </div>
+                </div>
+            </template>
+        </oj-list-view>
+    </div>
+
+
+    <div class="oj-flex oj-sm-flex-direction-column oj-flex-item oj-sm-12 oj-md-7">
+        <div class="oj-flex-item">
+            <oj-bind-if test="[[false]]">
+                <h3 id="headId">Today's Deals</h3>
+            </oj-bind-if>
+
+          
+            
+            <oj-bind-if test="[[false]]">
+                <div class="oj-flex-item oj-flex">
+                    <oj-film-strip id="filmStrip" max-items-per-page="3" aria-label="Set of chemicals" arrow-placement="adjacent" arrow-visibility="auto" looping="page" class="oj-flex-item oj-sm-12 oj-md-11">
+                        <oj-bind-for-each data="{{ $variables.chemicals }}" as="chemical">
+                            <template>
+                                <div class="oj-panel demo-filmstrip-item" style.display="0">
+                                    <div>
+                    <!-- <img data-bind="attr:{src: $current.data.image}" /> -->
+                                        <img data-bind="attr:{src: $current.data.image}">
+                                    </div>
+
+                  
+                                
+                                    <div>
+                                        <oj-bind-text value="[[chemical.data.name]]"></oj-bind-text>
+                                    </div>
+                                </div>
+                            </template>
+                        </oj-bind-for-each>
+                    </oj-film-strip>
+                </div>
+            </oj-bind-if>
+            <h3>Products</h3>
+            <oj-list-view id="oj-list-view-1084591017-3" class="oj-listview-card-layout" data="{{ $variables.allproducts }}" selection-mode="single" on-selection-changed="[[$listeners.ojListView10845910173Selection]]">
+                <template slot="itemTemplate">
+                    <div class="oj-flex-item">
+                        <b>
+                            <oj-bind-text value="[[$current.data.item_description]]"></oj-bind-text>
+                        </b>
+                        <div data-bind="css: 'hud-card-'+$current.data.rownum"></div>
+                    </div>
+                    <div class="rating">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <oj-rating-gauge id="gauge1" data-bind="value:$current.data.rating" readonly="" style="width:90px;height:20px;">
+                                        </oj-rating-gauge>
+                                    </td>
+                                    <td>
+                                        <a target="_blank" :id="[['a-1084591017-3-' + $current.index]]" on-click="[[$listeners.a10845910173Click]]">
+                                            <oj-bind-text value="[[$current.data.total_rating]]"></oj-bind-text>
+                                        </a>
+
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+                    </div>
+                    <div>
+                        <span>Price:</span>
+                        <oj-bind-text value="[[$current.data.fprice]]"></oj-bind-text>
+                    </div>
+                    <div>
+                        <oj-button data-bind="style:{ width:'100%'}, id:$current.data.id" class="demo-button-blue" on-oj-action="[[$listeners.OJBUTTON10845910171OjAction]]" :id="[['OJ-BUTTON-1084591017-1-' + $current.index]]">
+                            Add </oj-button>
+
+                  </div>
+
+
+
+
+                </template>
+                <!--           <template slot="itemTemplate">
+               <div class="oj-flex-items-pad">
+                    <div class="oj-flex">
+                         <p class="oj-flex-item oj-sm-12 oj-md-3">Field 1:</p>
+                         <p class="oj-flex-item oj-sm-12 oj-md-4">
+                              <oj-bind-text value="[[$current.data.field1]]"></oj-bind-text>
+                         </p>
+                    </div>
+                    <div class="oj-flex">
+                         <p class="oj-flex-item oj-sm-12 oj-md-3">Field 2:</p>
+                         <p class="oj-flex-item oj-sm-12 oj-md-4">
+                              <oj-bind-text value="[[$current.data.field2]]"></oj-bind-text>
+                         </p>
+                    </div>
+               </div>
+          </template> -->
+            </oj-list-view>
+        </div>
+    </div>
+    <div class="oj-flex-item oj-sm-12 oj-md-3 oj-flex oj-sm-flex-items-initial">
+        <div class="oj-sm-12 oj-md-11 oj-sm-flex-wrap-nowrap oj-md-6 oj-md-12 oj-flex-item oj-flex oj-sm-flex-direction-column oj-sm-flex-items-initial">
+            <h3 id="h1-1084591017-1" class="oj-flex-item">Shopping Cart</h3>
+            <oj-list-view id="oj-list-view-1084591017-1" data="{{ $variables.ShoppingCartArrayDP}}" class="oj-flex-item oj-sm-flex-initial">
+                <oj-input-text id="oj-input-text-1084591017-2" value="{{ $variables.total }}"></oj-input-text>
+                <template slot="itemTemplate">
+                    <div class="oj-flex-items-pad">
+                        <div class="oj-flex">
+                            <div class="title">
+                                <oj-bind-text value="[[$current.data.item_description]]" class="title"></oj-bind-text>
+                            </div>
+                        </div>
+                        <div class="oj-flex">
+                            <div class="price cartCenterMargin">Price:
+                                <oj-bind-text value="[[$current.data.price]]"></oj-bind-text>
+                            </div>
+                            <div class="cartCenter">
+                                <oj-input-text id="quantity" type="text" style="max-width:20%;text-align:center;" value="[[$current.data.quantity]]" on-value-changed="[[$listeners.quantityValue]]">
+                                </oj-input-text>
+                            </div>
+                            <div class="cartCenterMargin">
+                                <a class="btn btn-danger" href="#" on-click="[[$listeners.A10845910171Click]]" :id="[[$current.data.price]]">
+                                    <i class="fas fa-trash-alt fa-lg"></i>
+                                </a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </template>
+
+
+            </oj-list-view>
+            <div class="oj-flex-item oj-flex oj-sm-flex-initial">
+                <div class="oj-flex-item oj-sm-12 oj-md-12">
+                    <oj-bind-if test="{{ $variables.total >0}} ">
+                        <oj-masonry-layout id="oj-masonry-layout-1084591017-1">
+                            <div class="oj-masonrylayout-tile-3x2">
+                                <a class="btn btn-success" target="_blank" id="a-1084591017-2" on-click="[[$listeners.a10845910172Click]]">
+                                    <i class="fas fa-shopping-cart fa-lg"></i>Checkout
+                                </a>
+                                <span>
+                                    <b>Total:</b>
+                                </span>
+                                <oj-bind-text value="{{ $variables.total }}"></oj-bind-text>
+
+                                <!-- <oj-label id="oj-label-1084591017-1" for="oj-input-text-1084591017-1">Total</oj-label> -->
+                                <a target="_blank" id="a-1084591017-1" class="btn btn-warning right" dir="rtl" on-click="[[$listeners.a10845910171Click]]">
+                                    <i class="fas fa-trash-alt fa-lg"></i> Empty Cart
+
+                                </a>
+                            </div>
+                        </oj-masonry-layout>
+                    </oj-bind-if>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+</div>
+<div class="oj-flex" style="display:none">
+    <div class="oj-flex oj-sm-flex-direction-column oj-flex-item oj-sm-12 oj-md-6" data-vb-layout-type="flex">
+        <div class="oj-flex-item oj-flex oj-sm-flex-direction-column">
+            <div id="popupWrapper" style="display:none">
+                <oj-popup id="popup1" class="demo-popup" tail="none" position.my.horizontal="center" position.my.vertical="center" position.at.horizontal="center" position.at.vertical="center" position.of="window" position.offset.y="100" modality="modal">
+                    <div style="width: 400px;">
+                        <div class="row">
+                            <div class="side">
+                                <div>5 star</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-5"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+                                <div id="five">30</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="side">
+                                <div>4 star</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-4"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+                                <div id="four">63</div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+
+                            <div class="side">
+                                <div>3 star</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-3"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+                                <div id="three">
+                                    <oj-bind-text value="8"></oj-bind-text>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>&nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+
+
+                            <div class="side">
+                                <div>2 star</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-2"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+                                <div id="two">
+                                    <oj-bind-text value="9"></oj-bind-text>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="side">
+                                <div>1 star</div>
+                            </div>
+                            <div class="middle">
+                                <div class="bar-container">
+                                    <div class="bar-1"></div>
+                                </div>
+                            </div>
+                            <div class="side right">
+                                <div id="one">20</div>
+                            </div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="row">
+                            <div>
+                                <oj-list-view id="oj-list-view-1021909705-1" style="height:95vh;min-height:300px;width:400px;overflow-x:hidden" class="oj-flex-item" data="{{ $variables.getCat }}">
+                                    <template slot="itemTemplate">
+                                        <div class="oj-flex" style="flex-wrap: nowrap;align:left">
+                                            <div class="oj-flex-item oj-flex">
+                                                <div class="oj-flex oj-flex-item oj-sm-flex-items-1 oj-sm-flex-wrap-nowrap oj-sm-flex-initial">
+                                                    <div class="oj-flex-item" style="padding-right:5px;">
+                                                        <oj-avatar class="oj-flex-item oj-sm-flex-initial" :id="[['oj-avatar-1021909705-1-' + $current.index]]" src="https://www.oracle.com/webfolder/technetwork/jet/demo/images/composites/avatar-image.jpg" initials="AS"></oj-avatar>
+                                                    </div>
+                                                    <!--                                 <span class=" oj-flex-item oj-sm-flex-1" 
+                                style="background-image: url('https://www.oracle.com/webfolder/technetwork/jet/demo/images/listView/oracle.gif'); width:50px;   background-repeat:no-repeat;
+"></span> -->
+                                                </div>
+                                                <div class="oj-flex-item oj-flex oj-sm-align-items-baseline">
+                                                    <div class="demo-content oj-flex-item">
+                                                        <div>
+                                                            <strong>
+                                                                <oj-bind-text value="[[$current.data.cross_reference]]">
+                                                                </oj-bind-text>
+                                                            </strong>
+                                                            <span class="demo-username">
+                                                                <oj-bind-text value="@MonkeyNutz"></oj-bind-text>
+                                                            </span>
+                                                        </div>
+                                                        <div class="demo-tweet">
+                                                            <span style="word-wrap: break-word">
+                                                                <oj-bind-text>This review is for the RIGHT hand Callaway
+                                                                    Men't Strata Set - I'm sure there is no difference
+                                                                    for lefties.
+
+                                                                    I'm an experienced golfer that plays with fairly
+                                                                    high-end equipment that seems to get partially
+                                                                    upgraded every season or two whether I plan to, or
+                                                                    not. It's not uncommon for me to spend $1,000-$1,400
+                                                                    annually on upgrading equipment.</oj-bind-text>
+                                                            </span>
+                                                            <a :href="[[$current.data.source]]">
+                                                                <oj-bind-text value="[[$current.data.source]]">
+                                                                </oj-bind-text>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span class="demo-metadata">
+                                                            <oj-bind-text value="[[$current.data.cross_reference]]">
+                                                            </oj-bind-text>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="oj-flex oj-sm-flex-direction-column oj-flex-item" data-vb-layout-type="flex"></div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </oj-list-view>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </oj-popup>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="oj-flex" style="display:none">
+    <oj-table summary="Sample Table" scroll-policy="loadMoreOnScroll" id="oj-table-1084591017-1" class="oj-flex-item oj-sm-12 oj-md-10" data="[[$page.variables.getRatingListSDP]]" columns='[{"headerText":"five","field":"five"},{"headerText":"four","field":"four"},{"headerText":"one","field":"one"},{"headerText":"three","field":"three"},{"headerText":"two","field":"two"}]'>
+    </oj-table>
+    <oj-label id="oj-label-1084591017-1" for="oj-input-text-1084591017-1" class="oj-flex-item oj-sm-12 oj-md-1">Text
+    </oj-label>
+    <oj-input-text id="oj-input-text-1084591017-1" class="oj-flex-item oj-sm-12 oj-md-1" value="{{ $variables.refreshRating }}"></oj-input-text>
+</div>

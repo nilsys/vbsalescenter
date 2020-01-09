@@ -1,0 +1,99 @@
+{
+    "defaultPage": "shell",
+    "types": {
+    },
+    "variables": {
+        "count": {
+            "defaultValue": 0,
+            "type": "number"
+        },
+        "org_global": {
+            "type": "string"
+        },
+        "scGlobalADP": {
+            "type": "vb/ArrayDataProvider"
+        }
+    },
+    "security": {
+        "access": {
+            "requiresAuthentication": false
+        }
+    },
+    "applicationModelVersion": "18.4.1",
+    "chains": {
+    },
+    "configuration": {
+        "initParams": {
+            "profile": "development"
+        }
+    },
+    "translations": {
+        "app": {
+            "path": "./resources/strings/app/nls/app-strings"
+        }
+    },
+    "description": "A new VB app",
+    "id": "starter",
+    "services": {
+        "apiGithubComUserName": "services/apiGithubComUserName/service.json",
+        "yearlyProductsData": {
+            "path": "services/yearlyProductsData/service.json"
+        },
+        "yearlySalesByProduct": {
+            "path": "services/yearlySalesByProduct/service.json"
+        },
+        "orgsOracleUsers": "services/orgsOracleUsers/service.json",
+        "orderList": {
+            "path": "services/orderList/service.json"
+        },
+        "productDetails": {
+            "path": "services/productDetails/service.json"
+        },
+        "products": {
+            "path": "services/products/service.json"
+        },
+        "businessObjects": "services/businessObjects/service.json",
+        "plsApexVenksOrderinfo": "services/plsApexVenksOrderinfo/service.json",
+        "orderDetails": {
+            "path": "services/orderDetails/service.json"
+        },
+        "ratings": {
+            "path": "services/ratings/service.json"
+        },
+        "customertoproduct": {
+            "path": "services/customertoproduct/service.json"
+        },
+        "apiGithubCom": "services/apiGithubCom/service.json",
+        "apiGithubCom3": "services/apiGithubCom3/service.json",
+        "apiGithubCom2": "services/apiGithubCom2/service.json",
+        "getAddress": {
+            "path": "services/getAddress/service.json"
+        },
+        "categories": {
+            "path": "services/categories/service.json"
+        },
+        "producttocustomer": {
+            "path": "services/producttocustomer/service.json"
+        }
+    },
+    "userConfig": {
+        "configuration": {
+            "idcsInfo": {
+                "hostName": "https://idcs-fb7cd79597024dc4a8ddabd92de517fb.identity.c9dev1.oc9qadev.com:443",
+                "clientId": "d6dff5f43fbf41f4b6657227fcebddee",
+                "oAuthRedirectEndpoint": "https://intoraic-vbdemo.integration.ocp.oraclecloud.com:443/ic/builder/rt/salesportal1/1.0.1/webApps/webapp/",
+                "allowedScopes": [
+                    "https://sytestidmfed1cdc-test.fs.us2.oraclecloud.com:443/",
+                    "https://sytestidmfed1cdc-test.fs.us2.oraclecloud.com/",
+                    "https://69F87263C9CA4B1D984F6029EEF418F1.integration.ocp.oraclecloud.com:443urn:opc:resource:consumer::all"
+                ]
+            },
+            "url": "https://intoraic-vbdemo.integration.ocp.oraclecloud.com:443/ic/builder/rt/salesportal1/1.0.1/_currentuser",
+            "authentication": {
+                "type": "implicit"
+            }
+        },
+        "embedding": "deny",
+        "type": "vb/DefaultSecurityProvider"
+    }
+}

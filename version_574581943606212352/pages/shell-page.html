@@ -1,0 +1,137 @@
+<div id="page" class="oj-web-applayout-page">
+    <header role="banner" class="oj-web-applayout-header">
+        <div class="oj-web-applayout-max-width oj-flex-bar oj-sm-align-items-center">
+            <div class="oj-flex-bar-middle oj-sm-align-items-baseline">
+                <!-- Logo can go here -->
+                <!--img src="" alt="Company Logo"></img-->
+                <h1 class="oj-sm-only-hide oj-web-applayout-header-title" title="Application Name">Sales Center - Vision Enterprise
+                </h1>
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+                <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" type="text/css">
+            </div>
+            <div class="oj-flex-bar-end">
+                <span class="fa-stack fa-lg has-badge" data-bind="attr: {'data-count':$application.variables.count}" id="SPAN385906471" on-click="[[$listeners.SPAN385906471Click]]">
+                    <i class="fa fa-shopping-cart fa-stack-lg fa-inverse" :style="{{ $application.variables.count }}" id="IDSPAN385906471">
+                    </i>
+                </span>
+                <oj-toolbar id="toolbar1">
+                    <oj-menu-button id="userMenu" display="[[$application.responsive.SM_ONLY === false ? 'icons' : 'all']]" chroming="half">
+                        <!--             <span class="fa-stack fa-lg has-badge" data-bind="attr: {'data-count':$application.variables.count}" id="SPAN--38590647-1">
+              <i class="fa fa-shopping-cart fa-stack-lg fa-inverse" :style="{{ $application.variables.count }}" on-mouseover="[[$listeners.I385906471Mouseover]]" id="I--38590647-1">
+              </i>
+            </span> -->
+                        <oj-bind-text value="[[ $application.user.email ]]"></oj-bind-text>
+                        <span slot="endIcon" css="oj-component-icon oj-button-menu-dropdown-icon"></span>
+                        <oj-menu slot="menu" id="menu1" style="display:none">
+                            <!--               <oj-option id="out" value="out">Sign Out</oj-option> -->
+                        </oj-menu>
+                    </oj-menu-button>
+                </oj-toolbar>
+            </div>
+        </div>
+
+        <div role="navigation" class="oj-web-applayout-max-width oj-web-applayout-navbar">
+            <oj-navigation-list id="123" aria-label="Choose a navigation item" navigationlevel="application" drill-mode="none" display="all" selection="[[$page.currentFlow]]" class="oj-md-condense oj-md-justify-content-flex-end" on-selection-changed="[[$listeners.ojNavigationListSelection]]" edge="top">
+                <ul>
+                    <li id="main"><a href="#" on-click="[[$listeners.A385906471Click]]" id="A--38590647-1">
+                            <!-- 					<span  class="oj-navigationlist-item-icon demo-icon-font-24 demo-home-icon-24"></span> -->
+                            <i class="fas fa-home fa-lg"></i>
+                            Home</a>
+                    </li>
+                    <li id="order-list">
+
+                        <a href="#" target="_blank" on-click="[[$listeners.A385906472Click]]" id="A--38590647-2"><i class="fas fa-shopping-cart fa-lg"></i>Orders</a></li>
+                    <li id="reports">
+
+                        <a href="#" target="_blank" id="A--38590647-3" on-click="[[$listeners.A385906473Click]]">
+                            <i class="fas fa-chart-bar fa-lg"></i>
+                            Reports</a></li>
+                    <oj-bind-if test="[[false]]">
+                        <li id="table-view">
+                            <a href="#" target="_blank" id="A--38590647-4" on-click="[[$listeners.A385906474Click]]">Table</a>
+                        </li>
+                    </oj-bind-if>
+
+                </ul>
+            </oj-navigation-list>
+        </div>
+    </header>
+
+    <!--   start of popup  -->
+    <oj-popup id="popup" style="display:none;min-width:75px;min-height:75px;" tail="simple" position='{"my": {"horizontal": "center", "vertical": "bottom"}, 
+                                 "at": {"horizontal": "center", "vertical": "top"}
+                                }' modality="modeless">
+<!--         <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center">
+            <div class="oj-flex-item">Chasing Tail</div>
+        </div> -->
+        <div class="oj-flex-item oj-sm-12  oj-flex oj-sm-flex-items-initial">
+            <div class="oj-sm-12 oj-sm-flex-wrap-nowrap oj-md-12 oj-flex-item oj-flex oj-sm-flex-direction-column oj-sm-flex-items-initial oj-sm-align-items-center">
+                <h3 id="h1-1084591017-1" class="oj-flex-item">Shopping Cart</h3>
+                <oj-list-view id="oj-list-view-1084591017-1" data="{{ $application.variables.scGlobalADP }}" class="oj-flex-item oj-sm-flex-initial">
+                    <oj-input-text id="oj-input-text-1084591017-2" value=""></oj-input-text>
+                    <template slot="itemTemplate">
+                        <div class="oj-flex-items-pad">
+                            <div class="oj-flex">
+                                <div class="title">
+                                    <oj-bind-text value="[[$current.data.item_description]]" class="title">
+                                    </oj-bind-text>
+                                </div>
+                            </div>
+                            <div class="oj-flex">
+                                <div class="price">Total: $<oj-bind-text value="[[$current.data.price]]"></oj-bind-text>
+                                </div>
+                                <div class="price"> X <oj-bind-text value="[[$current.data.quantity]]"></oj-bind-text>
+                                </div>
+<!--                                     <oj-input-text id="quantity" type="text" style="max-width:20%;text-align:center;"
+                                        value="[[$current.data.quantity]]"
+                                        on-value-changed="[[$listeners.quantityValue]]"></oj-input-text> -->
+<!--                                 <div class="cartCenterMargin">
+                                    <a class="btn btn-danger" href="#" on-click="[[$listeners.A10845910171Click]]"
+                                        :id="[[$current.data.price]]">
+                                        <i class="fas fa-trash-alt fa-lg"></i>
+                                    </a>
+                                </div> -->
+
+
+                            </div>
+                            
+                        </div>
+                    </template>
+                    
+                </oj-list-view>
+                 <div class="oj-flex" align="center">
+                               &nbsp;
+                    </div>
+                <div class="oj-flex" align="center">
+                               <a class="btn btn-success" target="_blank" id="a-1084591017-2">
+                                    <i class="fas fa-shopping-cart fa-lg"></i>Checkout
+                                </a>
+                    </div>
+            </div>
+        </div>
+
+    </oj-popup>
+
+    <!--           end of popup -->
+    <!-- for message notifications -->
+    <oj-messages id="vbDefaultNotifier" position="{}" display="general" messages="{{$page.variables.messagesADP}}" on-oj-close="{{$listeners.onMessageClose}}"></oj-messages>
+
+    <div class="oj-web-applayout-content-nopad oj-web-spacing oj-web-applayout-max-width">
+        <div class="oj-web-applayout-content oj-flex-items-pad oj-flex">
+            <!-- Where Visual Pages will be rendered -->
+            <oj-vb-content id="vbRouterContent" class="vbcs-pages-module oj-flex-item" config="[[vbRouterFlow]]">
+            </oj-vb-content>
+        </div>
+    </div>
+    <footer class="oj-web-applayout-footer" role="contentinfo">
+        <div class="oj-web-applayout-footer-item oj-web-applayout-max-width">
+            <ul>
+                <li><a id="about" href="">About</a></li>
+            </ul>
+        </div>
+        <div class="oj-web-applayout-footer-item oj-text-secondary-color oj-text-sm oj-web-applayout-max-width">
+            Created with Visual Builder, Copyright © 2018
+        </div>
+    </footer>
+
+</div>

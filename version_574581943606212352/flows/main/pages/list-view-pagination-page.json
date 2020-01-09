@@ -1,0 +1,517 @@
+{
+  "pageModelVersion": "18.4.1",
+  "title": "",
+  "description": "",
+  "variables": {
+    "getOrgsOrgMembersPagePagePerPagePerPageListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom3/getOrgsOrgMembersPagePagePer_pagePer_page",
+        "idAttribute": "id",
+        "itemsPath": "",
+        "responseType": "page:getOrgsOrgMembersPagePagePerPagePerPageResponse"
+      }
+    },
+    "org_id": {
+      "type": "string",
+      "defaultValue": "oracle",
+      "persisted": "local"
+    },
+    "page": {
+      "type": "string",
+      "defaultValue": "1"
+    },
+    "page_size": {
+      "type": "string",
+      "defaultValue": "5"
+    },
+    "getOrgsOrgMembersPagePagePerPagePerPageListSDP2": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom3/getOrgsOrgMembersPagePagePer_pagePer_page",
+        "idAttribute": "id",
+        "itemsPath": "",
+        "responseType": "page:getOrgsOrgMembersPagePagePerPagePerPageResponse2",
+        "uriParameters": {
+          "org": "{{ $page.variables.org_id }}",
+          "page": "{{ $page.variables.page }}",
+          "per_page": "{{ $page.variables.page_size }}"
+        }
+      }
+    },
+    "current_user": {
+      "type": "string"
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom2/getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+        "idAttribute": "id",
+        "itemsPath": "",
+        "responseType": "page:getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse",
+        "uriParameters": {
+          "user": "{{ $page.variables.current_user }}"
+        }
+      }
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feListSDP2": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom2/getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+        "idAttribute": "id",
+        "itemsPath": "",
+        "responseType": "page:getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse2",
+        "uriParameters": {
+          "user": "{{ $page.variables.current_user }}"
+        }
+      }
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feListSDP3": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom2/getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+        "idAttribute": "id",
+        "itemsPath": "",
+        "responseType": "page:getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse3",
+        "uriParameters": {
+          "user": "{{ $page.variables.current_user }}"
+        }
+      }
+    },
+    "getMembersListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "orgsOracleUsers/getMembers",
+        "idAttribute": "login",
+        "itemsPath": "",
+        "responseType": "page:getMembersResponse"
+      }
+    },
+    "getOrgsOrgMembersPagePagePerPagePerPageListSDP3": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom3/getOrgsOrgMembersPagePagePer_pagePer_page",
+        "idAttribute": "login",
+        "itemsPath": "",
+        "responseType": "page:getOrgsOrgMembersPagePagePerPagePerPageResponse3",
+        "uriParameters": {
+          "org": "{{ $page.variables.org_id }}",
+          "page": "{{ $page.variables.page }}",
+          "per_page": "{{ $page.variables.page_size }}"
+        }
+      }
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feListSDP4": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom2/getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+        "idAttribute": "id",
+        "itemsPath": "",
+        "responseType": "page:getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse4",
+        "uriParameters": {
+          "user": "{{ $page.variables.current_user }}"
+        }
+      }
+    },
+    "getOrgsOrgMembersPagePagePerPagePerPageListSDP4": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "apiGithubCom3/getOrgsOrgMembersPagePagePer_pagePer_page",
+        "idAttribute": "login",
+        "itemsPath": "",
+        "responseType": "page:getOrgsOrgMembersPagePagePerPagePerPageResponse4",
+        "uriParameters": {
+          "org": "{{ $application.variables.org_global }}",
+          "page": "{{ $page.variables.page }}",
+          "per_page": "{{ $page.variables.page_size }}"
+        }
+      }
+    }
+  },
+  "types": {
+    "getOrgsOrgMembersPagePagePerPagePerPageResponse": [
+      {
+        "login": "string",
+        "id": "number",
+        "avatar_url": "string",
+        "type": "string"
+      }
+    ],
+    "@decorators.getOrgsOrgMembersPagePagePerPagePerPageResponse": {
+      "endpoint": "getOrgsOrgMembersPagePagePer_pagePer_page",
+      "service": "apiGithubCom3",
+      "path": "response"
+    },
+    "getOrgsOrgMembersPagePagePerPagePerPageResponse2": [
+      {
+        "login": "string",
+        "id": "number",
+        "avatar_url": "string"
+      }
+    ],
+    "@decorators.getOrgsOrgMembersPagePagePerPagePerPageResponse2": {
+      "endpoint": "getOrgsOrgMembersPagePagePer_pagePer_page",
+      "service": "apiGithubCom3",
+      "path": "response"
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse": [
+      {
+        "id": "number",
+        "full_name": "string",
+        "description": "string",
+        "forks_count": "number",
+        "forks": "number"
+      }
+    ],
+    "@decorators.getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse": {
+      "endpoint": "getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+      "service": "apiGithubCom2",
+      "path": "response"
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse2": [
+      {
+        "id": "number",
+        "description": "string",
+        "forks_count": "number",
+        "forks": "number"
+      }
+    ],
+    "@decorators.getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse2": {
+      "endpoint": "getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+      "service": "apiGithubCom2",
+      "path": "response"
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse3": [
+      {
+        "id": "number",
+        "description": "string",
+        "forks_count": "number"
+      }
+    ],
+    "@decorators.getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse3": {
+      "endpoint": "getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+      "service": "apiGithubCom2",
+      "path": "response"
+    },
+    "getMembersResponse": [
+      {
+        "login": "string",
+        "id": "number",
+        "avatar_url": "string"
+      }
+    ],
+    "@decorators.getMembersResponse": {
+      "endpoint": "getMembers",
+      "service": "orgsOracleUsers",
+      "path": "response"
+    },
+    "getOrgsOrgMembersPagePagePerPagePerPageResponse3": [
+      {
+        "login": "string",
+        "avatar_url": "string"
+      }
+    ],
+    "@decorators.getOrgsOrgMembersPagePagePerPagePerPageResponse3": {
+      "endpoint": "getOrgsOrgMembersPagePagePer_pagePer_page",
+      "service": "apiGithubCom3",
+      "path": "response"
+    },
+    "getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse4": [
+      {
+        "id": "number",
+        "html_url": "string",
+        "description": "string",
+        "url": "string",
+        "forks_count": "number",
+        "forks": "number"
+      }
+    ],
+    "@decorators.getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feResponse4": {
+      "endpoint": "getUsersUserClient_id993e9025bfce6ec4214eClient_secret6c4022af01321900492341d189265c6ac2e1c2fe",
+      "service": "apiGithubCom2",
+      "path": "response"
+    },
+    "getOrgsOrgMembersPagePagePerPagePerPageResponse4": [
+      {
+        "login": "string",
+        "avatar_url": "string"
+      }
+    ],
+    "@decorators.getOrgsOrgMembersPagePagePerPagePerPageResponse4": {
+      "endpoint": "getOrgsOrgMembersPagePagePer_pagePer_page",
+      "service": "apiGithubCom3",
+      "path": "response"
+    }
+  },
+  "chains": {
+    "ButtonsetManyValueChange": {
+      "description": "",
+      "variables": {
+        "value": {
+          "required": true,
+          "type": "any[]",
+          "input": "fromCaller"
+        }
+      },
+      "root": "",
+      "actions": {}
+    },
+    "ButtonAction": {
+      "description": "",
+      "variables": {
+        "detail": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        }
+      },
+      "root": "assignVariables1",
+      "actions": {
+        "assignVariables1": {
+          "module": "vb/action/builtin/assignVariablesAction",
+          "parameters": {
+            "$page.variables.page": {
+              "source": "{{ +$page.variables.page +1 }}"
+            }
+          }
+        }
+      }
+    },
+    "ButtonAction1": {
+      "description": "",
+      "variables": {
+        "detail": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        }
+      },
+      "root": "if1",
+      "actions": {
+        "if1": {
+          "module": "vb/action/builtin/ifAction",
+          "parameters": {
+            "condition": "{{ $page.variables.page > 1 }}"
+          },
+          "outcomes": {
+            "true": "assignVariables1"
+          }
+        },
+        "assignVariables1": {
+          "module": "vb/action/builtin/assignVariablesAction",
+          "parameters": {
+            "$page.variables.page": {
+              "source": "{{ $page.variables.page-1 }}"
+            }
+          }
+        }
+      }
+    },
+    "SingleSelectValueChange": {
+      "description": "",
+      "variables": {
+        "value": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        }
+      },
+      "root": "assignVariables1",
+      "actions": {
+        "assignVariables1": {
+          "module": "vb/action/builtin/assignVariablesAction",
+          "parameters": {
+            "$page.variables.page_size": {
+              "source": "{{ $chain.variables.value }}"
+            }
+          },
+          "outcomes": {
+            "success": "callComponentMethod1"
+          }
+        },
+        "callComponentMethod1": {
+          "module": "vb/action/builtin/callComponentMethodAction",
+          "parameters": {
+            "component": "{{ document.getElementById('oj-list-view-1385031982-1') }}",
+            "method": "refresh"
+          }
+        }
+      }
+    },
+    "ListItemClick": {
+      "description": "",
+      "variables": {
+        "detail": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "key": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "current": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        }
+      },
+      "root": "assignVariables1",
+      "actions": {
+        "assignVariables1": {
+          "module": "vb/action/builtin/assignVariablesAction"
+        }
+      }
+    },
+    "ListViewSelectionChange": {
+      "description": "",
+      "variables": {
+        "selection": {
+          "required": true,
+          "type": "any[]",
+          "input": "fromCaller"
+        }
+      },
+      "root": "assignVariables1",
+      "actions": {
+        "assignVariables1": {
+          "module": "vb/action/builtin/assignVariablesAction",
+          "parameters": {
+            "$page.variables.current_user": {
+              "source": "{{ $chain.variables.selection[0] }}"
+            }
+          },
+          "outcomes": {
+            "success": "callComponentMethod1"
+          }
+        },
+        "callComponentMethod1": {
+          "module": "vb/action/builtin/callComponentMethodAction",
+          "parameters": {
+            "component": "{{ document.getElementById('oj-list-view-1385031982-2') }}",
+            "method": "refresh"
+          }
+        }
+      },
+      "returnType": "string[]"
+    },
+    "ListViewSelectionChange1": {
+      "description": "",
+      "variables": {
+        "selection": {
+          "required": true,
+          "type": "any[]",
+          "input": "fromCaller"
+        }
+      },
+      "root": "fireCustomEvent1",
+      "actions": {
+        "fireCustomEvent1": {
+          "module": "vb/action/builtin/fireCustomEventAction"
+        }
+      }
+    },
+    "HyperlinkClick": {
+      "description": "",
+      "variables": {
+        "detail": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "key": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        },
+        "current": {
+          "required": true,
+          "type": "any",
+          "input": "fromCaller"
+        }
+      },
+      "root": "",
+      "actions": {}
+    }
+  },
+  "eventListeners": {
+    "ojButton13850319821OjAction": {
+      "chains": [
+        {
+          "chainId": "ButtonAction",
+          "parameters": {
+            "detail": "{{ $event.detail }}"
+          }
+        }
+      ]
+    },
+    "ojButton13850319822OjAction": {
+      "chains": [
+        {
+          "chainId": "ButtonAction1",
+          "parameters": {
+            "detail": "{{ $event.detail }}"
+          }
+        }
+      ]
+    },
+    "ojSelectOne13850319821Value": {
+      "chains": [
+        {
+          "chainId": "SingleSelectValueChange",
+          "parameters": {
+            "value": "{{ $event.detail.value }}"
+          }
+        }
+      ]
+    },
+    "ojListView13850319821Selection": {
+      "chains": [
+        {
+          "chainId": "ListViewSelectionChange",
+          "parameters": {
+            "selection": "{{ $event.detail.value }}"
+          }
+        },
+        {
+          "chainId": "ListViewSelectionChange1",
+          "parameters": {
+            "selection": "{{ $event.detail.value }}"
+          }
+        }
+      ]
+    }
+  },
+  "imports": {
+    "components": {
+      "oj-list-view": {
+        "path": "ojs/ojlistview"
+      },
+      "oj-vb-list-item": {
+        "path": "vb/components/list-item/loader"
+      },
+      "oj-buttonset-many": {
+        "path": "ojs/ojbutton"
+      },
+      "oj-option": {
+        "path": "ojs/ojoption"
+      },
+      "oj-button": {
+        "path": "ojs/ojbutton"
+      },
+      "oj-label": {
+        "path": "ojs/ojlabel"
+      },
+      "oj-select-one": {
+        "path": "ojs/ojselectcombobox"
+      },
+      "oj-avatar": {
+        "path": "ojs/ojavatar"
+      },
+      "oj-combobox-one": {
+        "path": "ojs/ojselectcombobox"
+      }
+    }
+  }
+}

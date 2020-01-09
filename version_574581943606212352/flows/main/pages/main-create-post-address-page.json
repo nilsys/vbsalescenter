@@ -1,0 +1,150 @@
+{
+  "pageModelVersion": "19.1.3",
+  "title": "Create postAddress",
+  "description": "Creates new postAddress",
+  "variables": {
+    "postAddress": {
+      "type": "page:postAddressRequest"
+    }
+  },
+  "types": {
+    "postAddressRequest": {
+      "first_name": "string",
+      "last_name": "string",
+      "street": "string",
+      "city": "string",
+      "state": "string",
+      "zip": "string",
+      "email": "string",
+      "phone": "string"
+    },
+    "@decorators.postAddressRequest": {
+      "endpoint": "postAddress",
+      "service": "getAddress",
+      "path": "request"
+    },
+    "genericServiceErrorResponseType": {
+      "body": "any",
+      "status": "number"
+    }
+  },
+  "chains": {
+    "goBackChain": {
+      "root": "navigateBack",
+      "actions": {
+        "navigateBack": {
+          "module": "vb/action/builtin/navigateBackAction",
+          "outcomes": {
+            "success": ""
+          }
+        }
+      }
+    },
+    "createPostAddressChain": {
+      "root": "createPostAddress",
+      "variables": {
+        "saveFailureResult": {
+          "type": "page:genericServiceErrorResponseType"
+        },
+        "errorMessage": {
+          "type": "string"
+        }
+      },
+      "actions": {
+        "createPostAddress": {
+          "module": "vb/action/builtin/restAction",
+          "parameters": {
+            "endpoint": "getAddress/postAddress",
+            "body": "{{ $page.variables.postAddress }}"
+          },
+          "outcomes": {
+            "success": "fireSuccessNotification",
+            "failure": "assignFailureResult"
+          }
+        },
+        "fireSuccessNotification": {
+          "module": "vb/action/builtin/fireNotificationEventAction",
+          "parameters": {
+            "summary": "postAddress saved",
+            "message": "postAddress record successfully created",
+            "type": "confirmation",
+            "displayMode": "transient"
+          },
+          "outcomes": {
+            "success": "navigateBack"
+          }
+        },
+        "navigateBack": {
+          "module": "vb/action/builtin/navigateBackAction",
+          "outcomes": {
+            "success": ""
+          }
+        },
+        "assignFailureResult": {
+          "module": "vb/action/builtin/assignVariablesAction",
+          "parameters": {
+            "$chain.variables.saveFailureResult": {
+              "source": "[[ $chain.results.createPostAddress.payload ]]"
+            }
+          },
+          "outcomes": {
+            "success": "handleDefaultErrorMessage"
+          }
+        },
+        "handleDefaultErrorMessage": {
+          "module": "vb/action/builtin/assignVariablesAction",
+          "outcomes": {
+            "success": "fireErrorNotification"
+          },
+          "parameters": {
+            "$chain.variables.errorMessage": {
+              "source": "[[ 'Could not create new postAddress: status ' + $chain.variables.saveFailureResult.status ]]"
+            }
+          }
+        },
+        "fireErrorNotification": {
+          "module": "vb/action/builtin/fireNotificationEventAction",
+          "parameters": {
+            "summary": "Save failed",
+            "message": "[[ $chain.variables.errorMessage ]]",
+            "type": "error",
+            "displayMode": "persist"
+          },
+          "outcomes": {}
+        }
+      }
+    }
+  },
+  "eventListeners": {
+    "backButtonClicked": {
+      "chains": [
+        {
+          "chainId": "goBackChain"
+        }
+      ]
+    },
+    "saveButtonClicked": {
+      "chains": [
+        {
+          "chainId": "createPostAddressChain"
+        }
+      ]
+    }
+  },
+  "imports": {
+    "components": {
+      "oj-form-layout": {
+        "path": "ojs/ojformlayout"
+      },
+      "oj-input-text": {
+        "path": "ojs/ojinputtext"
+      },
+      "oj-toolbar": {
+        "path": "ojs/ojtoolbar"
+      },
+      "oj-button": {
+        "path": "ojs/ojbutton"
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+<div class="oj-flex">
+    <oj-list-view id="oj-list-view-1134464019-1" class="oj-flex oj-md-4" on-selection-changed="[[$listeners.ojListView11344640191Selection]]" selection-mode="single" data="[[$page.variables.getUsersListSDP2]]">
+        <template slot="itemTemplate">
+            <oj-vb-list-item>
+                <p slot="title1">
+                    <oj-bind-text value="[[$current.data.id]]"></oj-bind-text>
+                </p>
+                <p slot="title1" :id="[['p-1134464019-2-' + $current.index]]">Paragraph</p>
+                <p slot="value1" :id="[['P-1134464019-1-' + $current.index]]" on-click="[[$listeners.P11344640191Click]]">
+                    <oj-bind-text value="[[$current.data.login]]"></oj-bind-text>
+                </p>
+                <oj-avatar class="oj-flex-item oj-sm-flex-initial" slot="image" :id="[['oj-avatar-1134464019-1-' + $current.index]]" src="[[$current.data.avatar_url]]"></oj-avatar>
+            </oj-vb-list-item>
+        </template>
+    </oj-list-view>
+    <oj-list-view id="oj-list-view-1134464019-3" class="oj-flex oj-md-8" data="[[$page.variables.getUsersUserClientId993e9025bfce6ec4214eClientSecret6c4022af01321900492341d189265c6ac2e1c2feListSDP4]]">
+        <template slot="itemTemplate">
+            <div class="oj-flex-items-pad">
+                <div class="oj-flex">
+                    <h4 class="oj-flex-item oj-sm-12 oj-md-12" :id="[['h1-1134464019-1-' + $current.index]]">
+                        <oj-bind-text value="[[$current.data.description]]"></oj-bind-text>
+                    </h4>
+                </div>
+                <div class="oj-flex">
+                    <oj-label class="oj-flex-item oj-sm-12 oj-md-2" :id="[['oj-label-1134464019-3-' + $current.index]]">Forks</oj-label>
+                    <div class="oj-flex-item oj-sm-12 oj-md-4"></div>
+                    <p class="oj-flex-item oj-sm-12 oj-md-4" :id="[['p-1134464019-7-' + $current.index]]">
+                        <oj-bind-text value="[[$current.data.forks_count]]"></oj-bind-text>
+                    </p>
+                </div>
+                <div class="oj-flex">
+                    <oj-label class="oj-flex-item oj-sm-12 oj-md-5" :id="[['oj-label-1134464019-4-' + $current.index]]">Creation Date</oj-label>
+                    <div class="oj-flex-item oj-sm-12 oj-md-1"></div>
+                    <p class="oj-flex-item oj-sm-12 oj-md-6" :id="[['p-1134464019-8-' + $current.index]]">
+                        <oj-bind-text value="[[$current.data.created_at]]"></oj-bind-text>
+                    </p>
+                </div>
+                <div class="oj-flex">
+                    <oj-label class="oj-flex-item oj-sm-12 oj-md-2" :id="[['oj-label-1134464019-6-' + $current.index]]">fork</oj-label>
+                    <div class="oj-flex-item oj-sm-12 oj-md-4"></div>
+                    <p class="oj-flex-item oj-sm-12 oj-md-4" :id="[['p-1134464019-9-' + $current.index]]">
+                        <oj-bind-text value="[[$current.data.fork]]"></oj-bind-text>
+                    </p>
+                    <a target="_blank" class="oj-flex-item oj-sm-12 oj-md-2" :id="[['a-1134464019-1-' + $current.index]]" on-click="[[$listeners.a11344640191Click]]" :href=" [[$current.data.html_url]]">Click</a>
+                </div>
+            </div>
+        </template>
+    </oj-list-view>
+</div>
